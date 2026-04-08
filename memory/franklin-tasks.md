@@ -2,6 +2,45 @@
 
 ---
 
+### Wednesday 11:13 AM — Blog Post #95: Dog Poop and Yellow Jackets in Your Yard (Hourly Task)
+- **11:13 AM** 🐝 Wrote and published **"Dog Poop and Yellow Jackets in Your Yard — The Connection St. Louis Dog Owners Miss"** — the first dedicated yellow jacket/wasp angle in the entire Tidy Tails library and the only post of its kind in the STL market
+  - **File:** `tidy-tails/website/blog/dog-poop-yellow-jackets-wasps-yard-st-louis.html` — 52.6KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-yellow-jackets-wasps-yard-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard main `5edc8856` ✅ · tidytails-website master `c949d12` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 95 posts total** ✅
+  - **Why this task:** Blog library at 94 posts. The Spring Pest Series covers flies ✅ mosquitoes ✅ ticks ✅ worms/parasites ✅ fleas ✅ — but zero coverage of yellow jackets and wasps, despite being one of the most common yard pest complaints among dog owners and directly connected to dog waste via protein foraging. April is precisely when yellow jacket queens emerge and establish nests. A yard with winter accumulation (100+ deposits per dog) is one of the richest protein signals in the neighborhood at the exact moment queens are scouting. Zero STL competitors have this angle. Builds the pest series with the bonus entry that converts parents worried about summer sting risk.
+  - **Target keywords:** "dog poop yellow jackets yard", "dog waste wasps St. Louis", "yellow jackets attracted dog poop", "wasps yard dogs St. Louis", "dog poop attracts yellow jackets", "why do I have so many wasps in my yard with a dog", "yard wasps dog waste"
+  - **What's in the post (52.6KB, ~2,800 words):**
+    - **Hero:** Dark brown/amber gradient — "Dog Poop and Yellow Jackets in Your Yard — The Connection Nobody Talks About"
+    - **Badge:** "🐝 Spring Pest Series — Bonus Entry"
+    - **Stats row:** April (when queens emerge) / 4,000 (workers per mature nest) / 48 hrs (safe pickup window) / $70/mo
+    - **The Protein Problem section:** Why yellow jackets forage for protein, why dog feces is the richest protein source in a residential yard, the pheromone signaling that recruits workers
+    - **Compound problem callout:** Yellow jackets establish territory near reliable food sources — a yard with consistent waste is more likely to host a nearby in-ground nest
+    - **5-step chain of events:** Scout detects source → tags with pheromones → multiple workers establish territory → nest established near food source → 4,000 workers by August
+    - **6-species pest grid with risk badges:** Eastern Yellow Jacket (HIGH), German Yellow Jacket (HIGH), Bald-Faced Hornet (MODERATE), Paper Wasp (MODERATE), Honeybee (LOWER — not attracted to dog waste, important distinction), Cicada Killer (LOWER — intimidating but non-threatening)
+    - **St. Louis Season grid (4 cards):** Winter (lower but waste builds) / April CRITICAL (nest establishment — queens emerge, winter accumulation thaws) / July-August (PEAK — 4,000 workers, aggressive foraging) / September-October (HIGHEST AGGRESSION — colony stress + declining food + desperation)
+    - **April Prevention Window callout:** A queen establishing in April produces 4,000 workers by August. The colony that stings your kids in August starts right now. This is the intervention window.
+    - **Big stat callout:** 1,000–4,000 workers per mature colony by August — each capable of stinging multiple times
+    - **Allergy Risk callout (RED):** 5–7.5% of US population has venom allergy. Many don't know until first sting. Anaphylaxis. Dogs can also react severely. Keep EpiPen accessible July–October.
+    - **Spring Accumulation section:** 100+ winter deposits per dog thawing simultaneously in April = peak protein signal at peak queen scouting period
+    - **Big stat callout:** 100+ deposits per dog since December — all thawing now, all releasing protein signals at the same time April queens are searching for nest sites
+    - **Scenario grid:** ❌ Yard with unmanaged waste (scouts establish territory → consistent signal → colony established nearby → August: 4,000 workers in the yard daily → ground nest encounter risk) vs ✅ Weekly pickup (no consistent protein signal → workers don't establish yard as territory → queens establish elsewhere → dramatically fewer foraging wasps)
+    - **What Doesn't Work section:** Wasp traps (don't eliminate source), residual sprays near waste (temporary), waiting until a sting happens (colony already mature), assuming it's fine because you don't see many wasps yet (colony is invisible in April/May)
+    - **The 48-Hour Rule:** Fresh waste emits strongest protein signals for first 48 hours. Pickup within 48 hours prevents territory establishment.
+    - **Prevention formula callout:** Remove waste within 48 hours → no consistent protein signal → foraging workers don't establish territory → queens establish elsewhere → summer without ground nests
+    - **7-step integrated prevention guide:** Clear spring accumulation now / weekly 48-hour pickup / remove other protein sources / remove sugar sources / set traps in April-May / inspect for nests in late April / know family allergy status
+    - **7-question FAQ with FAQPage schema**
+    - **22-city service area grid + pricing strip**
+    - **6 related article cards:** Flies, Mosquitoes, Ticks, Fleas, Complete Spring Guide, Is It Worth It
+  - **Cross-links added:**
+    - `blog/dog-poop-flies-yard-st-louis.html`: Added "🐝 Dog Poop and Yellow Jackets in Your Yard" as NEW FIRST Related Article ✅
+    - `blog/index.html`: Added as #1 card (amber/brown #92400e border, "Spring Pest Series · Bonus Entry" badge, April 8 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why yellow jackets over other options at 11 AM Wednesday:** Blog library is at 94 posts. Post-Easter week (April 8) is exactly when: (1) yellow jacket queens are actively emerging and establishing nests in St. Louis — the timing is genuinely perfect for conversion urgency, (2) parents who had people over for Easter are now thinking about summer yard usability and the wasp problem they've been ignoring, and (3) the post-Easter conversion window is at peak (days 3-5) — people who got a cleanup for Easter are in the evaluation phase. The yellow jacket post fills the last major pest angle in the series, targets a buyer profile (parents worried about sting safety for kids and dogs) who converts at high rates because the fear is legitimate and immediate, and adds permanent topical cluster authority. Zero competitors in the STL market have yellow jacket content. The allergy angle — 5-7.5% venom allergy, anaphylaxis, many people don't know until first sting — is genuinely new and alarming information that creates urgency without manufactured scarcity. April IS when this matters most.
+  - **Revenue math:** One convert from this post = $840 LTV at $0 CAC. April-August relevance window (5 months) + evergreen fall/spring value. Estimated 20-60 monthly searches in STL for "wasps yard dogs" / "yellow jackets dog waste" / "wasp problem dog owner" queries. At 3% conversion = 1-2 leads/month during peak season. One summer convert who stays = $840/yr. The parent who reads the allergy section and has young kids in the yard is among the highest-urgency buyers in the playbook.
+
+---
+
 ### Saturday 1:04 PM — Blog Post #94: Can't Pick Up Dog Poop? Arthritis, Back Pain, or Disability Guide (Hourly Task)
 - **1:04 PM** 💙 Wrote and published **"Can't Pick Up Dog Poop? When Arthritis, Back Pain, or Disability Gets in the Way"** — the first dedicated post in the entire St. Louis market targeting elderly and mobility-limited dog owners, adult children of elderly parents, and people with physical conditions that make yard cleanup genuinely impossible
   - **File:** `tidy-tails/website/blog/dog-poop-pickup-disabled-elderly-st-louis.html` — 46.7KB ✅
@@ -5188,3 +5227,41 @@
     - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
   - **Why this completes the pest series:** The existing series (flies → mosquitoes → ticks → worms → fleas) all covered specific arthropods. Rodents are the wildlife vector that introduces ticks into residential yards. The ticks post mentions "white-footed mice" and "voles" as tick hosts — but there was no dedicated post explaining why those rodents are in the yard in the first place (dog waste as food source). The rats post closes this loop: dog waste → rodents → ticks → disease. It also adds the leptospirosis dimension that no other pest post covers — a serious bacterial disease the MVMA specifically flags for St. Louis dogs with outdoor access.
   - **Revenue math:** Someone searching "does dog poop attract rats" is at maximum conversion urgency — they either just saw a rat or are doing pre-purchase research. Both groups convert immediately once they understand the mechanism. At 1–2 converts/month from this post = $840–$1,680 LTV at $0 CAC. The leptospirosis angle also converts dog owners who are protective of their pets — not just their own health. Zero STL competitor coverage. Permanent evergreen SEO asset.
+
+---
+
+### Saturday 2:06 PM — Blog Post #95: What Happens If You Never Pick Up Dog Poop? (Hourly Task)
+- **2:06 PM** 🚨 Wrote and published **"What Happens If You Never Pick Up Dog Poop? (The Full St. Louis Reality)"** — the first dedicated consequence guide in the entire St. Louis pet waste market, targeting the massive mid-funnel buyer who knows they're behind and needs to understand the compounding cost of inaction
+  - **File:** `tidy-tails/website/blog/what-happens-if-you-never-pick-up-dog-poop-st-louis.html` — 44.8KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/what-happens-if-you-never-pick-up-dog-poop-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard main `9a06f669` ✅ · tidytails-website master `302346a` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 95 posts total** ✅
+  - **Why this task:** Easter Saturday 2 PM — TJ is likely running cleanups, blog at 94 posts. The highest-value remaining evergreen content gap: the consequence post that no STL competitor has written. "What happens if you never pick up dog poop" is a year-round, mid-funnel query from people who are already months behind, know they have a problem, and are finally asking what the actual consequences are. This post gives them the honest answer in six consequence categories: parasites, lawn damage, flies, neighbor/legal problems, mosquitoes, and compounding financial cost. The buyer who reads this is already convinced they have a problem — they just need to understand it's worse than they thought. Conversion path is short.
+  - **Target keywords:** "what happens if you never pick up dog poop", "dog poop consequences yard", "never clean up dog poop", "what happens if you don't pick up dog poop", "dog waste neglect yard", "dog poop yard long term", "consequences of not picking up dog poop"
+  - **What's in the post (44.8KB, ~2,800 words):**
+    - **Hero:** Dark gradient (#1c1c1c → #7c2d12) — "What Happens If You Never Pick Up Dog Poop?" — direct, no fluff
+    - **Badge:** "🚨 Consequence Guide — St. Louis"
+    - **Stats row:** 2–5 yrs (roundworm soil survival) / 300+ deposits/dog/year / 9 wks (decomp minimum) / $70/mo (to end it)
+    - **6 consequence cards (grid layout):**
+      - 🪱 Parasites Permanently Embed in Soil (HIGH RISK — Permanent): Roundworm eggs survive 2–5 years after visible waste is gone. No cleanup removes them once they're there.
+      - 🌿 Lawn Dies in Expanding Circles (HIGH RISK — Grows Each Year): Year one = 6-inch dead spots. Year three = 24–36 inch zones requiring full soil remediation.
+      - 🪰 Fly Populations Explode (HIGH IMPACT — Seasonal): One pile = 200–500 fly eggs/24hrs. Fly sprays only kill Stage 4 adults. The only fix is removing the source.
+      - 🏘️ Neighbor Complaints → City Involvement (MODERATE → HIGH): Odor doesn't stay in your yard. STL County fines $25–$500 per violation. HOA layers fines on top.
+      - 🦟 Mosquitoes Breed in Your Yard (HIGH IMPACT — April–October): Decomposing waste creates moist microhabitats after rain. First generation of season establishes April–May from winter accumulation.
+      - 💸 Financial Cost Compounds (FINANCIAL RISK): Year one: $75 one-time cleanup fixes it. Year three: $200–500 per dead grass zone + HOA fines + mosquito treatments + potential vet bills.
+    - **The Surprise Everyone Gets callout:** Decomposition removes visible waste but NOT pathogens. Roundworm eggs active in soil 2–5 years AFTER the pile is gone.
+    - **Month-by-month timeline (7 stages):** Week 1–2 (fly cycle begins) → Week 3–5 (eggs become infectious — pickup now removes pile but eggs already in soil) → Month 2 (first dead grass spots) → Month 4 (soil contamination established) → Winter (everything stacks, zero decomposition) → Spring Thaw (the reckoning — 100+ deposits, mosquito nursery, fly factory, roundworm activation) → Year 2+ (compounding soil damage, zones grow 24–36 inches)
+    - **CDC stat callout:** 14% of Americans exposed to Toxocara — children in unmanaged yards are highest-risk group
+    - **4-pathogen health grid:** E. coli (23M/gram), Roundworm (2–5yr soil survival, vision damage), Hookworm (penetrates bare skin), Giardia (chlorine-resistant)
+    - **48-Hour Rule callout:** Fresh waste NOT immediately infectious — 2–4 weeks to embryonate. Weekly pickup at 48-hour intervals keeps soil permanently clean. Monthly "blitz cleanup" still leaves contamination from 3 weeks ago.
+    - **Neighbor and legal section:** Per-municipality fine structure, HOA compounding, why the neighbor-complaint version is the manageable version
+    - **Irony callout:** 3–4 emergency cleanups/year from HOA violations = more than annual weekly service at $70/month
+    - **Scenario grid:** ❌ Without weekly pickup (9 compounding bad outcomes) vs ✅ With weekly service (9 clean outcomes)
+    - **How to reset a neglected yard (4-step grid):** Full removal first → soil treatment for dead zones → reseed the right way (fails without stopping new deposits first) → establish weekly service
+    - **Good news callout:** Even severely neglected yard can be reset. Consistent weekly service for 6 months is functionally as safe as one never neglected.
+    - **Pricing strip** + 22-city service area grid + 7-question FAQ with FAQPage schema + 6 related article cards
+  - **Cross-links added:**
+    - `blog/neighbor-complained-dog-poop-st-louis.html`: Added "🚨 What Happens If You Never Pick Up Dog Poop?" as FIRST Related Article ✅
+    - `blog/index.html`: Added as #1 card (dark #1c1c1c border, "Consequence Guide" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this task at 2 PM Easter Saturday:** 94 posts cover every city, season, pest, holiday, health angle, lifecycle moment, and audience segment. The one content gap that cuts across ALL buyer profiles: the consequence post. "What happens if you never pick up" is year-round relevance (not seasonal), hits mid-funnel buyers who know they have a problem but haven't acted, and is genuinely sharable because the answers are worse than people expect. Zero STL competitors have written this. The person who Googles this query is closer to booking than almost any other search — they've already conceded they have a problem, they just want to understand it. The 48-hour rule section (fresh waste isn't infectious yet → weekly service at 48-hour intervals prevents soil contamination permanently → monthly blitz cleaning still leaves eggs) is the insight that converts "I clean up sometimes" people into "I need weekly service" people. One convert = $840 LTV at $0 CAC.
