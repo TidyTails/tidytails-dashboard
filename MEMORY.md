@@ -55,8 +55,11 @@
 - Average customer value: ~$100/month
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
-### Current State (Mar 29, 2026)
-- **11 recurring customers** ✅ (TJ confirmed Mar 29 — up from 10!)
+### Current State (Apr 14, 2026)
+- **11 recurring customers** ✅
+- **First commercial lead EVER: Zachson (HOA)** — bid sent Apr 14: $900 install / $240/mo service. Follow up Apr 16. TJ needs Next Insurance GL policy (nextinsurance.com) for COI if HOA asks.
+- **Q2 Content Calendar deployed** (May–July): tidytails.github.io/tidytails-dashboard/dashboard/q2-content-calendar-may-july.html
+- **Command center cleaned** — all stale Easter/April content removed Apr 14
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
 - **Monday scooping day** (changed from Sunday, Mar 20)
