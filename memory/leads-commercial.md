@@ -1655,7 +1655,8 @@ Commercial pricing is different from residential. Here's what competitors charge
 - **Why Good Fit:** 27+ floor plans in one of STL's most dog-loving suburbs. Large community. Kirkwood residents are active, dog-dedicated homeowners and renters. Pairs with The James Kirkwood for a same-day Kirkwood sales blitz. Establishes Tidy Tails in the Kirkwood/South County corridor.
 - **Est. Monthly Value:** $200–$400/mo
 - **Found:** April 4, 2026
-- **Status:** New
+- **Status:** ❌ Dead — Phone suspended (confirmed April 15, 2026)
+- **Notes:** Called April 15 — number suspended. Find alternate contact or try walk-in.
 - **Pitch angle:** "Building our Kirkwood route — professional pet waste cleanup for your grounds. Weekly service, flat monthly rate, no contract."
 
 ---
@@ -1686,4 +1687,58 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated April 4, 2026 — 119 total leads)
+### Willow Bend Apartments
+- **Type:** Apartment Complex
+- **Contact:** Leasing Office
+- **Found:** April 15, 2026
+- **Status:** ❌ Dead — Phone suspended (confirmed April 15, 2026)
+- **Notes:** Called April 15 — number suspended. Find alternate contact or skip.
+
+---
+
+### The Finn Apartments
+- **Type:** Apartment Complex
+- **Contact:** Management
+- **Found:** April 15, 2026
+- **Status:** ❌ Not a Fit — Handles pet waste in-house
+- **Notes:** Called April 15. They do pet waste removal themselves with hourly staff. Not interested in outside service.
+
+---
+
+### Village Square Apartments
+- **Type:** Apartment Complex
+- **Contact:** Leasing/Management
+- **Found:** April 15, 2026
+- **Status:** 🟡 Follow Up — Call back in ~1 month (May 15, 2026)
+- **Notes:** Called April 15. Not at this time — said to call back in about a month. Had a 1pm meeting. Sounded open. **Follow up: May 15, 2026.**
+
+---
+
+### New Wellington Apartment Homes
+- **Type:** Apartment Complex
+- **Contact:** Leasing Office
+- **Found:** April 15, 2026
+- **Status:** ❌ Dead — Phone not working (April 15, 2026)
+- **Notes:** Called April 15 — number didn't work. Find a new number or skip.
+
+---
+
+### Stanford Place
+- **Type:** Apartment Complex / Community
+- **Contact:** Management
+- **Found:** April 15, 2026
+- **Status:** ❌ Not a Fit — Self-managed with hourly staff
+- **Notes:** Called April 15. Already has pet waste stations on-site AND hourly staff maintaining/picking up. Fully covered internally. Not a prospect.
+
+---
+
+### Villages at General Grant
+- **Type:** Apartment Complex / Community
+- **Contact:** On-site Managers
+- **Found:** April 15, 2026
+- **Status:** 🟡 Follow Up — Managers at off-site meeting (call back April 16, 2026)
+- **Notes:** Called April 15. Managers were off-site at a big meeting, back tomorrow. **Follow up: April 16, 2026.**
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 15, 2026 — 125 total leads)
