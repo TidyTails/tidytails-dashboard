@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>May Daily Playbook | TJ Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#242424;
+  --text:#f5f5f5;--text2:#999;--text3:#555;
+  --green:#10b981;--blue:#3b82f6;--orange:#ff6b35;
+  --yellow:#fbbf24;--red:#ef4444;--purple:#8b5cf6;
+  --pink:#ec4899;--teal:#14b8a6;--indigo:#6366f1;
+  --shed:#f59e0b;--tt:#10b981;
+  --border:#2a2a2a;--radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+.header{background:var(--bg2);border-bottom:2px solid var(--border);padding:1.25rem 1.5rem;position:sticky;top:0;z-index:100;}
+.header h1{font-size:1.2rem;font-weight:800;}
+.header h1 span{color:var(--pink);}
+.header-sub{font-size:.7rem;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
+.back{display:inline-block;font-size:.75rem;color:var(--text2);margin-bottom:.4rem;text-decoration:none;}
+.back:hover{color:var(--text);}
+
+.layout{display:grid;grid-template-columns:340px 1fr;gap:0;min-height:calc(100vh - 80px);}
+
+/* ── LEFT: Calendar ── */
+.cal-col{background:var(--bg2);border-right:1px solid var(--border);padding:1.25rem;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto;}
+.cal-header{text-align:center;margin-bottom:1rem;}
+.cal-header h2{font-size:1.1rem;font-weight:800;color:var(--pink);}
+.cal-header p{font-size:.7rem;color:var(--text3);margin-top:.2rem;}
+
+.legend{display:flex;gap:.75rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.leg{display:flex;align-items:center;gap:.3rem;font-size:.62rem;color:var(--text2);}
+.leg-dot{width:8px;height:8px;border-radius:50%;}
+
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;}
+.wd{text-align:center;font-size:.6rem;font-weight:700;color:var(--text3);padding:.3rem 0;font-family:'JetBrains Mono',monospace;}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day{
+  aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;font-size:.78rem;font-weight:700;border:1.5px solid transparent;
+  background:var(--bg3);transition:all .15s;position:relative;padding:.2rem;
+}
+.cal-day:hover{border-color:var(--indigo);background:var(--bg4);}
+.cal-day.selected{border-color:var(--indigo);background:rgba(99,102,241,.15);}
+.cal-day.empty{background:transparent;cursor:default;pointer-events:none;}
+.cal-day.today-ref{border-color:var(--yellow);color:var(--yellow);}
+.cal-day.hot-day{background:rgba(239,68,68,.08);}
+.cal-day.hot-day::after{content:'🔥';font-size:.5rem;position:absolute;top:2px;right:3px;}
+.cal-day.event-day::before{content:'';width:5px;height:5px;border-radius:50%;position:absolute;bottom:3px;background:var(--pink);}
+.cal-day .day-num{font-size:.82rem;font-weight:800;}
+.cal-day .day-dots{display:flex;gap:2px;margin-top:2px;}
+.cal-day .dot{width:4px;height:4px;border-radius:50%;}
+.dot.tt{background:var(--tt);}
+.dot.shed{background:var(--shed);}
+.dot.action{background:var(--blue);}
+
+.streak-bar{background:var(--bg3);border-radius:8px;padding:.75rem;margin-top:1rem;border:1px solid var(--border);}
+.streak-bar h4{font-size:.7rem;color:var(--text3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}
+.goal-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem;}
+.goal-label{font-size:.72rem;color:var(--text2);}
+.goal-val{font-size:.72rem;font-weight:700;}
+.prog-bar{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:.6rem;}
+.prog-fill{height:100%;border-radius:2px;transition:width .5s;}
+
+/* ── RIGHT: Detail Panel ── */
+.detail-col{padding:1.5rem;overflow-y:auto;}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;color:var(--text3);text-align:center;}
+.empty-state .emoji{font-size:3rem;margin-bottom:.75rem;}
+.empty-state p{font-size:.85rem;}
+
+.day-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;}
+.day-title{font-size:1.4rem;font-weight:800;}
+.day-date{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text3);margin-top:.2rem;}
+.day-theme{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;font-size:.72rem;font-weight:700;background:rgba(236,72,153,.12);color:var(--pink);border:1px solid rgba(236,72,153,.25);}
+.day-theme.shed-theme{background:rgba(245,158,11,.12);color:var(--shed);border-color:rgba(245,158,11,.25);}
+.day-theme.hot{background:rgba(239,68,68,.12);color:var(--red);border-color:rgba(239,68,68,.25);}
+.day-theme.green{background:rgba(16,185,129,.12);color:var(--green);border-color:rgba(16,185,129,.25);}
+
+.biz-section{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;}
+.biz-section.tt-section{border-top:3px solid var(--tt);}
+.biz-section.shed-section{border-top:3px solid var(--shed);}
+.biz-section.actions-section{border-top:3px solid var(--blue);}
+
+.biz-label{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;}
+.biz-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.tt-icon{background:rgba(16,185,129,.15);}
+.shed-icon{background:rgba(245,158,11,.15);}
+.action-icon{background:rgba(59,130,246,.15);}
+.biz-name{font-size:.85rem;font-weight:700;}
+.biz-sub{font-size:.68rem;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+
+.copy-label{font-size:.62rem;color:var(--text3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;}
+.copy-box{
+  background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:.85rem;
+  font-size:.79rem;line-height:1.65;color:var(--text);white-space:pre-wrap;
+  cursor:pointer;transition:all .2s;position:relative;margin-bottom:.75rem;
+}
+.copy-box:hover{border-color:var(--indigo);}
+.copy-box:active{transform:scale(.99);}
+.copy-toast{
+  position:absolute;top:.4rem;right:.6rem;font-size:.6rem;color:var(--green);
+  font-weight:700;display:none;font-family:'JetBrains Mono',monospace;
+}
+.copy-btn{
+  display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:700;
+  padding:.3rem .8rem;border-radius:6px;background:var(--bg4);color:var(--text2);
+  cursor:pointer;border:1px solid var(--border);transition:all .2s;font-family:inherit;
+}
+.copy-btn:hover{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.copy-btn.tt-btn:hover{background:var(--tt);border-color:var(--tt);}
+.copy-btn.shed-btn:hover{background:var(--shed);color:#000;border-color:var(--shed);}
+
+.action-list{list-style:none;}
+.action-item{display:flex;align-items:flex-start;gap:.65rem;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text2);}
+.action-item:last-child{border:none;}
+.action-item input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:1px;accent-color:var(--blue);cursor:pointer;}
+.action-item label{cursor:pointer;line-height:1.4;}
+.action-item label.done{text-decoration:line-through;color:var(--text3);}
+.action-tag{font-size:.58rem;font-weight:700;padding:.1rem .4rem;border-radius:3px;margin-left:.3rem;flex-shrink:0;}
+.tag-tt{background:rgba(16,185,129,.15);color:var(--tt);}
+.tag-shed{background:rgba(245,158,11,.15);color:var(--shed);}
+.tag-both{background:rgba(99,102,241,.15);color:var(--indigo);}
+.tag-hot{background:rgba(239,68,68,.15);color:var(--red);}
+
+.tip-box{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2);border-radius:8px;padding:.75rem;font-size:.76rem;color:var(--text2);line-height:1.55;margin-top:.5rem;}
+.tip-box strong{color:var(--indigo);}
+
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .cal-col{position:relative;top:0;height:auto;border-right:none;border-bottom:1px solid var(--border);}
+  .detail-col{padding:1rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" class="back">← Back to Command Center</a>
+  <h1>📅 <span>May Daily Playbook</span> — TJ Operations</h1>
+  <div class="header-sub">TIDY TAILS STL + TUFFSHED/WOODMASTER · MAY 2026 · CLICK ANY DATE</div>
+</div>
+
+<div class="layout">
+
+<!-- ── LEFT: Calendar ── -->
+<div class="cal-col">
+  <div class="cal-header">
+    <h2>🌸 May 2026</h2>
+    <p>Click any date for copy + gameplan</p>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:var(--tt)"></div>Tidy Tails post</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--shed)"></div>Shed post</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>Action day</div>
+  </div>
+
+  <div class="weekdays">
+    <div class="wd">SUN</div><div class="wd">MON</div><div class="wd">TUE</div>
+    <div class="wd">WED</div><div class="wd">THU</div><div class="wd">FRI</div><div class="wd">SAT</div>
+  </div>
+
+  <div class="cal-grid" id="cal-grid"></div>
+
+  <div class="streak-bar">
+    <h4>May Goals</h4>
+    <div class="goal-row"><span class="goal-label">🐕 Tidy Tails customers</span><span class="goal-val" style="color:var(--tt)">11 → 15</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:73%;background:var(--tt)"></div></div>
+    <div class="goal-row"><span class="goal-label">🏠 Shed leads worked</span><span class="goal-val" style="color:var(--shed)">0 → 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:0%;background:var(--shed)"></div></div>
+    <div class="goal-row"><span class="goal-label">📞 Commercial calls made</span><span class="goal-val" style="color:var(--blue)">0 → 10</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:0%;background:var(--blue)"></div></div>
+  </div>
+</div>
+
+<!-- ── RIGHT: Detail ── -->
+<div class="detail-col" id="detail-col">
+  <div class="empty-state">
+    <div class="emoji">👆</div>
+    <p>Pick a day to see your copy<br>and action plan</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ── DAY DATA ──
+const days = {
+  1:{
+    theme:"🏁 Month Kickoff",themeClass:"",
+    tt:{
+      label:"FB Group Post — Tidy Tails STL",
+      copy:`Spring is in full swing and yards across STL are a MESS 🐾
+
+If you've got dogs, you know what I'm talking about.
+
+Tidy Tails STL handles the part nobody wants to deal with — professional pet waste removal starting at just $25/week.
+
+✅ Weekly, biweekly, or monthly
+✅ Jamie comes to you — you don't lift a finger
+✅ Local, reliable, actually shows up
+
+Text or call Jamie: 314-850-7140
+Or book at tidytailsstl.com
+
+Comment below if you want a free quote! 🐕💩`
+    },
+    shed:{
+      label:"FB Marketplace / Groups — Sheds",
+      copy:`PSA: Garage looking more like a storage unit than a garage?
+
+It's not a you problem. It's a shed problem. 😅
+
+We've got dozens of custom sheds on the lot RIGHT NOW:
+✅ Workshops ✅ Man caves ✅ She sheds ✅ Basic storage
+💥 FREE delivery & setup
+🤑 Financing, rent-to-own, no credit check options
+
+Stop parking in the driveway because of stuff.
+
+Text Darius: 636-354-7406 — no pressure, just options.`
+    },
+    actions:[
+      {text:"Post Tidy Tails copy in STL Dog Owners + STL Pets Facebook groups",tag:"tt"},
+      {text:"Post shed copy in STL Facebook Marketplace — update at least 2 listings",tag:"shed"},
+      {text:"Check tidytailsstl.com loads correctly on mobile",tag:"tt"},
+      {text:"Log any new leads from yesterday into CRM",tag:"both"}
+    ],
+    tip:"<strong>May goal:</strong> 4 new TT customers = $240/mo new MRR. Shed goal: work 20 leads this month. Marketplace refresh is the fastest way to get shed inquiries flowing."
+  },
+  2:{
+    theme:"🌸 Mother's Day Seed",themeClass:"",
+    tt:{
+      label:"FB Group Post — Mother's Day Angle",
+      copy:`Dog moms do EVERYTHING. 🐾❤️
+
+The feeding, the walks, the vet appointments, the belly rubs at 2am...
+
+The least we can do is handle the gross part.
+
+Tidy Tails STL — pet waste removal for St. Louis dog moms who deserve a clean yard.
+
+Starting at $25/week. Gift certificates available for Mother's Day!
+
+Text Jamie: 314-850-7140
+tidytailsstl.com`
+    },
+    shed:{
+      label:"FB Groups — Weekend Browsing Post",
+      copy:`Saturday question: What would you actually USE a shed for?
+
+Workshop? Storage? Home office? She shed? Man cave? All of the above? 😂
+
+Whatever the answer — we've got it on the lot. Custom options too.
+
+Come see them in person or text Darius for pricing: 636-354-7406
+
+💥 FREE delivery | 🤑 Rent-to-own available`
+    },
+    actions:[
+      {text:"Post TT Mother's Day seed in 2 STL dog FB groups",tag:"tt"},
+      {text:"Post shed 'what would you use it for' engagement post",tag:"shed"},
+      {text:"Reply to any comments/DMs from Friday's posts",tag:"both"}
+    ],
+    tip:"<strong>Mother's Day is May 10</strong> — 8 days out. Plant the seed now so the close week (May 4–10) hits people who've already seen your name twice."
+  },
+  3:{
+    theme:"📋 Week Planning Day",themeClass:"green",
+    tt:{
+      label:"Light Social — Dog Engagement",
+      copy:`Sunday question for STL dog parents: How many times a week does your dog go outside? 🐶
+
+(Asking for the business that has to clean it up 😂)
+
+Follow us for weekly tips + our no-nonsense pet waste service. Starting at $25/wk.
+
+Text Jamie: 314-850-7140 | tidytailsstl.com`
+    },
+    shed:{
+      label:"Sunday Scroll — Pricing Post",
+      copy:`Quick Sunday reminder: a shed pays for itself.
+
+Think about it — you're paying for:
+🏠 Square footage you're not using
+🚗 Parking outside because the garage is full
+🔧 Projects you've been putting off
+
+A shed fixes all three.
+
+Prices start way lower than you'd think. Text Darius for a quote: 636-354-7406
+Free delivery. Financing available. No pressure.`
+    },
+    actions:[
+      {text:"Plan the full week ahead — what days you're posting vs just working leads",tag:"both"},
+      {text:"Review shed pipeline — who needs a follow-up call this week?",tag:"shed"},
+      {text:"Review TT customer list — anyone overdue for a check-in?",tag:"tt"},
+      {text:"Light social posts only — don't burn out on Sunday",tag:"both"}
+    ],
+    tip:"<strong>Sundays = planning, not grinding.</strong> Spend 20 min reviewing your pipeline so Monday you're executing, not figuring out what to do."
+  },
+  4:{
+    theme:"🔥 Mother's Day Close Week",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Mother's Day PUSH",
+      copy:`Mother's Day is THIS SUNDAY 🌸
+
+Dog moms — this one's for you.
+
+Tidy Tails STL is doing free first pickups this week for any new signups through Sunday. Your yard gets cleaned. You get to enjoy it.
+
+Starting at $25/week after that — weekly, biweekly, or monthly. We work around your schedule.
+
+Comment below or text Jamie: 314-850-7140
+tidytailsstl.com/mothers-day 🐾`
+    },
+    shed:{
+      label:"FB Post — She Shed Mother's Day Angle",
+      copy:`Mother's Day idea that actually makes sense: a she shed. 🌸
+
+A space that's HERS. No kids. No pets. No clutter.
+
+Workshop, craft room, reading nook, home office — she decides.
+
+We've got them on the lot. Custom options available.
+💥 FREE delivery & setup
+🤑 Financing + rent-to-own
+
+Text Darius: 636-354-7406
+No pressure — just options she'll actually love.`
+    },
+    actions:[
+      {text:"POST DAILY this week — don't skip a day (May 4–10)",tag:"hot"},
+      {text:"Text all 11 TT customers: ask them to forward to dog mom friends",tag:"tt"},
+      {text:"Post TT copy in EVERY STL dog FB group you're in",tag:"tt"},
+      {text:"Post Shed she-shed angle in Marketplace + FB groups",tag:"shed"},
+      {text:"Pull up tidytailsstl.com/mothers-day — confirm it's live",tag:"tt"}
+    ],
+    tip:"<strong>Referral text for customers:</strong> 'Hey [Name]! Mother's Day is Sunday — do you know any dog moms who'd love a clean yard? Send them Jamie's number: 314-850-7140. We'd love to take care of them!' — Send this to ALL 11 customers today."
+  },
+  5:{
+    theme:"🔥 Mother's Day Close Week",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Testimonial Angle",
+      copy:`Our customers always say the same thing after their first pickup: 'Why did I wait this long?' 😂
+
+If you've got dogs and a yard in St. Louis, you already know the situation.
+
+Tidy Tails STL has been keeping local yards clean all spring. Mother's Day special: free first pickup for new signups this week.
+
+Weekly service starts at $25/wk. Text or call Jamie: 314-850-7140 🐾`
+    },
+    shed:{
+      label:"FB Marketplace — Workshop Angle",
+      copy:`Warning: side effects of our sheds may include:
+✔ Finally having a workshop
+✔ Actually finishing home projects
+✔ A garage you can park in again
+✔ Jealous neighbors
+
+💥 FREE delivery & setup
+🤑 Financing or rent-to-own
+📍 Dozens on the lot in St. Charles
+
+No pressure, but they're moving fast.
+
+Text Darius: 636-354-7406`
+    },
+    actions:[
+      {text:"Post TT testimonial angle in FB groups",tag:"tt"},
+      {text:"Post shed Workshop copy in Marketplace — update listing photos if possible",tag:"shed"},
+      {text:"Call 2 warm TT leads from last month who expressed interest",tag:"tt"},
+      {text:"Follow up on any quoted shed customers from last week",tag:"shed"},
+      {text:"Check and respond to ALL Marketplace messages (shed)",tag:"shed"}
+    ],
+    tip:"<strong>Day 2 of close week.</strong> Consistency wins — people need to see your name 3–5 times before they act. You're building that frequency right now."
+  },
+  6:{
+    theme:"🔥 Mother's Day Close Week",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Gift Angle",
+      copy:`Looking for a Mother's Day gift that actually helps? 🌸
+
+Gift a clean yard.
+
+Tidy Tails STL gift certificates — buy a month of service for the dog mom in your life. We handle the cleanup so she doesn't have to.
+
+Starting at $70/month. Text Jamie to set it up: 314-850-7140
+
+(We also do first-time free pickups for new signups this week only 🐾)`
+    },
+    shed:{
+      label:"FB Post — Financing Breakdown",
+      copy:`'I want a shed but I don't have the cash right now'
+
+We hear this constantly. Here's what most people don't know:
+
+🤑 Rent-to-own: no credit check, low weekly payments
+💳 Traditional financing: buy now, pay monthly
+💵 Cash: best deal if you've got it
+
+You DON'T need cash upfront to get a shed.
+
+Text Darius for options: 636-354-7406
+Free delivery no matter how you pay.`
+    },
+    actions:[
+      {text:"Post TT gift certificate angle in groups + on Tidy Tails FB page",tag:"tt"},
+      {text:"Post GBP update for Tidy Tails — Mother's Day special",tag:"tt"},
+      {text:"Post shed financing post in FB groups + Marketplace",tag:"shed"},
+      {text:"Update 2 Marketplace listings with fresh photos or refreshed copy",tag:"shed"},
+      {text:"Nextdoor post for TT — Mother's Day angle",tag:"tt"}
+    ],
+    tip:"<strong>GBP posts = free SEO.</strong> Every post on Google Business Profile boosts local visibility. Takes 5 minutes. Do it today for both businesses if you can."
+  },
+  7:{
+    theme:"🔥 Mother's Day Close Week",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Urgency Build",
+      copy:`2 days until Mother's Day 🌸
+
+If you've been thinking about getting a pet waste service... this is your sign.
+
+Free first pickup this week for new signups in St. Louis County and surrounding areas.
+
+✅ We come to you
+✅ Weekly, biweekly, or monthly options
+✅ No contracts — cancel anytime
+
+Text Jamie now: 314-850-7140
+tidytailsstl.com 🐾`
+    },
+    shed:{
+      label:"FB Marketplace — Tariff Urgency",
+      copy:`Heads up if you've been thinking about a shed:
+
+Lumber prices are up 45%+ this year from tariffs. Every month you wait = higher prices.
+
+Today's price IS tomorrow's discount.
+
+We've got inventory on the lot RIGHT NOW at current pricing.
+💥 FREE delivery | 🤑 Financing available
+
+Text Darius before prices adjust: 636-354-7406`
+    },
+    actions:[
+      {text:"Post TT urgency copy in ALL FB groups — 2 days out",tag:"tt"},
+      {text:"Post shed tariff urgency in Marketplace + groups",tag:"shed"},
+      {text:"Text any warm TT leads who've inquired this week — personal follow-up",tag:"tt"},
+      {text:"Respond to ALL shed Marketplace messages same-day",tag:"shed"},
+      {text:"PRINT or prep anything physical for Mother's Day",tag:"tt"}
+    ],
+    tip:"<strong>2 days out = peak urgency window.</strong> Personal texts to warm leads (not mass blast) convert better than group posts right now. 'Hey [Name], Mother's Day is Sunday — still want to get that first cleanup?' goes a long way."
+  },
+  8:{
+    theme:"🔥 Mother's Day Close Week",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Final Push",
+      copy:`LAST DAY for the Mother's Day free pickup offer 🌸
+
+Tomorrow's Mother's Day and a LOT of yards in St. Louis need attention before the cookouts and family visits 😅
+
+Text Jamie TODAY to lock in:
+📱 314-850-7140
+
+Free first pickup. Weekly service from $25/wk after that.
+
+Tag a dog mom who deserves this 👇🐾`
+    },
+    shed:{
+      label:"FB Post — Weekend Traffic",
+      copy:`Weekend plans? Come see the lot 📍
+
+5520 Westwood Dr, Saint Charles — we've got dozens of sheds, garages, and storage buildings you can walk through IN PERSON before you buy.
+
+No obligation. No sales pressure. Just come look.
+
+Questions first? Text Darius: 636-354-7406
+Free delivery to any address in the St. Louis area 🏠`
+    },
+    actions:[
+      {text:"FINAL PUSH — post in every single group you're in for TT",tag:"hot"},
+      {text:"Text ALL warm TT leads personally — 'last chance for Mother's Day offer'",tag:"tt"},
+      {text:"Share Tidy Tails post on your personal FB page",tag:"tt"},
+      {text:"Post shed 'come see the lot' for weekend traffic",tag:"shed"},
+      {text:"If budget allows: boost $7 FB ad for TT today only",tag:"tt"}
+    ],
+    tip:"<strong>Tag-a-friend posts = organic reach multiplier.</strong> 'Tag a dog mom who deserves this 👇' in your caption gets OTHER people to spread it for free. Make sure this line is in today's post."
+  },
+  9:{
+    theme:"🌸 MOTHER'S DAY EVE",themeClass:"hot",
+    tt:{
+      label:"Mother's Day Eve — Celebration Post",
+      copy:`Tomorrow is Mother's Day 🌸
+
+To every dog mom in St. Louis — THANK YOU. For the midnight walks, the vet runs, the belly rubs, all of it.
+
+Jamie and the Tidy Tails STL team are grateful for every customer who trusted us with their yard this spring.
+
+If you're new here: we do pet waste removal starting at $25/week. Text Jamie: 314-850-7140 🐾
+
+Happy Mother's Day 💚`
+    },
+    shed:{
+      label:"FB Post — Last-Minute Mother's Day Gift",
+      copy:`Last minute Mother's Day idea that actually ships in time: nothing.
+
+BUT — you can text her a gift certificate for a she shed. 😂
+
+Seriously though — 'I'm buying you a custom she shed, pick what you want' is a legendary gift.
+
+Text Darius and we'll figure out the details: 636-354-7406
+Free delivery. Financing available. 🌸🏠`
+    },
+    actions:[
+      {text:"Post Mother's Day eve celebration — warm, NOT salesy",tag:"tt"},
+      {text:"Confirm all new TT signups from this week — text with service start date",tag:"tt"},
+      {text:"Text existing 11 customers: 'Happy almost Mother's Day — thank you!'",tag:"tt"},
+      {text:"Post shed last-minute gift angle",tag:"shed"},
+      {text:"Prep your Monday scooping route — Mother's Day = yards full",tag:"tt"}
+    ],
+    tip:"<strong>Today is about gratitude, not selling.</strong> The revenue already came from this week's push. Today: celebrate, confirm new customers, prep Monday's route. Being genuine on holidays builds lasting loyalty."
+  },
+  10:{
+    theme:"🌸 MOTHER'S DAY",themeClass:"hot",
+    tt:{
+      label:"Mother's Day Post — Zero Selling",
+      copy:`Happy Mother's Day to all the dog moms in St. Louis 🌸🐾
+
+You keep the house running, the dogs happy, and somehow still get it all done.
+
+Today is YOUR day. Enjoy every minute of it.
+
+— Jamie & the Tidy Tails STL crew 💚`
+    },
+    shed:{
+      label:"Mother's Day Post — Sheds",
+      copy:`Happy Mother's Day from TuffShed/WoodMaster STL 🌸
+
+To all the moms who share their homes, garages, and patience with the whole family — you deserve a space that's just yours.
+
+Hoping you get to enjoy today, whatever that looks like.
+
+— Darius & the team 🏠`
+    },
+    actions:[
+      {text:"Post celebration content — NO pitching today",tag:"hot"},
+      {text:"Text new TT signups from this week: 'First service starts [day] — excited to take care of your yard!'",tag:"tt"},
+      {text:"Text existing customers: Happy Mother's Day — no ask, just warm",tag:"tt"},
+      {text:"MONDAY SCOOPING PREP — confirm all addresses on route",tag:"tt"}
+    ],
+    tip:"<strong>Mother's Day = zero selling.</strong> Today is purely goodwill. Every message today is a relationship deposit that makes future asks easier. The conversion window is Day 3–5 AFTER today anyway."
+  },
+  11:{
+    theme:"📞 Mother's Day Follow-Up",themeClass:"",
+    tt:{
+      label:"FB Group Post — Post-Holiday Momentum",
+      copy:`Hope all the dog moms had an amazing day yesterday 🌸
+
+Quick reminder that Tidy Tails STL is still taking new clients for May.
+
+If you signed up over the weekend — your first service is coming this week. We'll text you before we head out.
+
+If you've been on the fence: weekly service from $25/wk. Text Jamie: 314-850-7140 🐾
+
+Spring is short. The yard doesn't clean itself 😅`
+    },
+    shed:{
+      label:"FB Post — Post-Holiday Inventory",
+      copy:`Mother's Day weekend is done. Time to get back to your own list 📋
+
+If 'build a shed' or 'add storage' has been on there... we've got exactly what you need.
+
+Dozens in stock. Custom options. Free delivery.
+Financing, rent-to-own, or cash — whatever works.
+
+Text Darius: 636-354-7406 🏠`
+    },
+    actions:[
+      {text:"FOLLOW UP — text anyone who showed TT interest over Mother's Day weekend",tag:"tt"},
+      {text:"Call Zachson HOA — follow up on the $900/$240mo proposal",tag:"hot"},
+      {text:"Post TT copy in FB groups — keep momentum going",tag:"tt"},
+      {text:"Post shed copy — back-to-business angle",tag:"shed"},
+      {text:"Update TT customer count in CRM if any new signups closed",tag:"tt"}
+    ],
+    tip:"<strong>Day 1 post-Mother's Day = highest intent window.</strong> People who saw your posts over the weekend and didn't act yet are MOST likely to convert today. Personal text > group post right now."
+  },
+  12:{
+    theme:"🌿 Eco Angle Day",themeClass:"green",
+    tt:{
+      label:"FB Group Post — Earth/Eco Angle",
+      copy:`Did you know: one dog produces about 274 pounds of waste per year 🐶
+
+Left in the yard, it doesn't just disappear. It washes into storm drains, contaminates soil, and affects local waterways.
+
+Tidy Tails STL removes it the right way — so your yard stays clean AND you're not adding to the problem.
+
+Starting at $25/week. Local to St. Louis County and surrounding areas.
+
+Text Jamie: 314-850-7140 🌿`
+    },
+    shed:{
+      label:"FB Post — Outdoor Living Season",
+      copy:`Summer outdoor living starts with a clean yard... and ends with somewhere to put the stuff 😂
+
+A shed isn't just storage. It's what makes the rest of your outdoor space actually usable.
+
+✅ Get the tools, equipment & clutter OUT of the way
+✅ Enjoy the backyard without tripping over everything
+✅ Customize it however you want
+
+Text Darius: 636-354-7406
+Free delivery. Financing available. 🏠`
+    },
+    actions:[
+      {text:"Post TT eco angle in Nextdoor AND FB groups",tag:"tt"},
+      {text:"Submit Tidy Tails to 1 online directory (Bark.com, Yelp category, etc.)",tag:"tt"},
+      {text:"Call Millsap Properties — first commercial cold call of May",tag:"hot"},
+      {text:"Post shed outdoor living copy in Marketplace + groups",tag:"shed"},
+      {text:"Respond to any shed Marketplace messages",tag:"shed"}
+    ],
+    tip:"<strong>Nextdoor is underused.</strong> Eco/neighborhood angle plays perfectly there — it's not 'buy my service,' it's 'this is a neighborhood issue and I solve it.' Much less resistance than FB groups."
+  },
+  13:{
+    theme:"🔁 Convert Window",themeClass:"",
+    tt:{
+      label:"FB Group Post — Upsell / Recurring Push",
+      copy:`Quick question for STL dog owners: how often are you cleaning up the yard yourself?
+
+If the honest answer is 'not as often as I should' — that's why Tidy Tails exists 😂
+
+We come weekly, biweekly, or monthly. You don't lift a finger.
+
+$25/week | $45 biweekly | $70/month flat
+
+Text Jamie: 314-850-7140
+tidytailsstl.com 🐾`
+    },
+    shed:{
+      label:"FB Post — Man Cave / She Shed Angle",
+      copy:`The #1 regret of shed owners: 'I should have done this years ago'
+
+Whether it's a man cave, she shed, workshop, or just SPACE —
+
+A custom shed gives you the room your house never had.
+
+Dozens on the lot. Design your own. Free delivery.
+
+Text Darius: 636-354-7406 🏠`
+    },
+    actions:[
+      {text:"Text biweekly TT customers: offer upgrade to weekly — 'worth every penny'",tag:"tt"},
+      {text:"Day 3 post-Mother's Day: PEAK conversion window — follow up all interested leads",tag:"hot"},
+      {text:"Post TT pricing breakdown in FB groups",tag:"tt"},
+      {text:"Post shed man cave/she shed angle in Marketplace",tag:"shed"},
+      {text:"Update GBP with a new photo or post for both businesses",tag:"both"}
+    ],
+    tip:"<strong>Day 3 post-holiday = peak conversion.</strong> People who said 'I'll think about it' over Mother's Day weekend are most likely to say yes today. Don't skip personal follow-ups."
+  },
+  14:{
+    theme:"📞 Commercial Push Day",themeClass:"",
+    tt:{
+      label:"FB Group Post — Service Area Reminder",
+      copy:`Tidy Tails STL serves all of St. Louis County and surrounding areas 🗺️
+
+Florissant, Hazelwood, Ferguson, O'Fallon, St. Peters, Maryland Heights, St. Charles — if you've got dogs and a yard, we come to you.
+
+Weekly service from $25/wk. Biweekly $45. Monthly $70 flat.
+
+Zero commitment required to get started.
+
+Text Jamie: 314-850-7140 🐾`
+    },
+    shed:{
+      label:"FB Marketplace — Garage Reclaim Angle",
+      copy:`If your garage is storing everything EXCEPT cars... there's a fix.
+
+A shed gets the clutter out of your garage and into a dedicated space.
+
+✅ Organized
+✅ Accessible
+✅ Out of your way
+
+Park in your garage again by this weekend.
+
+Text Darius: 636-354-7406
+Delivery anywhere in St. Louis area. 🏠`
+    },
+    actions:[
+      {text:"Call 2 commercial leads from the database (Millsap, Park Forest Apartments)",tag:"hot"},
+      {text:"Text Zachson HOA if no response yet — brief check-in",tag:"tt"},
+      {text:"Post TT service area copy in North County FB groups specifically",tag:"tt"},
+      {text:"Post shed garage reclaim copy in Marketplace",tag:"shed"},
+      {text:"Check and respond to ALL Marketplace messages",tag:"shed"}
+    ],
+    tip:"<strong>Commercial calls are worth 10x residential.</strong> One apartment complex = $240–600/mo. One call this week can change June's numbers. The script is in your Calling Hub: tidytails.github.io/tidytails-dashboard/dashboard/commercial-calling-hub.html"
+  },
+  15:{
+    theme:"📣 Weekend Prep",themeClass:"",
+    tt:{
+      label:"FB Group Post — Before the Weekend",
+      copy:`Weekend plans with the dogs? 🐾
+
+Make sure the yard is ready.
+
+Tidy Tails STL does one-time cleanups for $100 — perfect before a cookout, family visit, or if you just haven't gotten to it all winter.
+
+Ongoing weekly service from $25/wk after that.
+
+Text Jamie to book: 314-850-7140
+tidytailsstl.com`
+    },
+    shed:{
+      label:"FB Post — Weekend Browsing",
+      copy:`Free this weekend? Come see the lot 👀
+
+5520 Westwood Dr, Saint Charles — walk through actual sheds before you buy. No obligation.
+
+Bring your measurements. Bring your ideas. Bring nothing at all and just browse.
+
+Questions first? Text Darius: 636-354-7406
+🏠 Free delivery | 🤑 Financing available`
+    },
+    actions:[
+      {text:"Post TT weekend cleanup offer in FB groups",tag:"tt"},
+      {text:"Post shed 'come to the lot' for weekend foot traffic",tag:"shed"},
+      {text:"Follow up ALL warm TT leads from the week — Friday is close day",tag:"tt"},
+      {text:"Check shed Marketplace listings — refresh any that are 7+ days old",tag:"shed"},
+      {text:"Update heartbeat-state.json with this week's lead counts",tag:"both"}
+    ],
+    tip:"<strong>Fridays = closing day.</strong> People make decisions on Friday for the weekend. Same-day or weekend service offers hit hardest today. 'Can we get your yard cleaned before this weekend?' is a YES question."
+  },
+  16:{
+    theme:"🐕 Scooping Day",themeClass:"green",
+    tt:{
+      label:"Saturday Social — Behind the Scenes",
+      copy:`Saturday scooping day at Tidy Tails STL 🐾
+
+Yards getting cleaned across St. Louis County right now. Clean yard season is officially here.
+
+If you want in for next week — there are still a few slots left.
+
+Text Jamie: 314-850-7140
+Starting at $25/week. 💚`
+    },
+    shed:{
+      label:"FB Post — Saturday Lot Post",
+      copy:`Beautiful Saturday to browse sheds 🏠
+
+We've got a lot full of them in Saint Charles. Come walk through before you buy.
+
+No sales pressure. No appointment needed. Just show up.
+
+📍 5520 Westwood Dr, Saint Charles
+📱 Text Darius if you want to talk first: 636-354-7406
+
+Free delivery anywhere in St. Louis area 💥`
+    },
+    actions:[
+      {text:"SCOOPING DAY — complete your Monday route (or today if shifted)",tag:"tt"},
+      {text:"Note any customer feedback or yard issues during scoops",tag:"tt"},
+      {text:"Post TT 'scooping day' story/update",tag:"tt"},
+      {text:"Post shed lot visit offer for Saturday foot traffic",tag:"shed"},
+      {text:"Respond to any FB group comments or DMs from this week",tag:"both"}
+    ],
+    tip:"<strong>Scooping day = content day.</strong> If you can grab even a 10-second video of the truck, the yard, the before/after — that's content that converts better than any written post. Even a quick iPhone shot works."
+  },
+  17:{
+    theme:"📋 Week Review",themeClass:"green",
+    tt:{
+      label:"Sunday Light Post — Week Recap",
+      copy:`Week 2 of May is done and Tidy Tails STL is still growing 🐾
+
+If you've been seeing us around the St. Louis dog groups — welcome to the page!
+
+We do pet waste removal starting at $25/week. Jamie handles the scheduling, we handle the mess.
+
+New clients always welcome. Text: 314-850-7140
+tidytailsstl.com 💚`
+    },
+    shed:{
+      label:"FB Post — Sunday Pricing Post",
+      copy:`Sunday reminder: a shed is cheaper than you think.
+
+Basic storage sheds: from low $1,000s
+Workshop/garage: mid-range options available
+Fully custom builds: we price it to fit your budget
+
+All include 💥 FREE delivery & setup
+
+Text Darius for a real quote: 636-354-7406
+No obligation. No sales pitch. Just numbers. 🏠`
+    },
+    actions:[
+      {text:"Review the week: how many TT leads came in? New signups?",tag:"tt"},
+      {text:"Review shed pipeline: new inquiries? Follow-ups needed?",tag:"shed"},
+      {text:"Plan Memorial Day push week (starts May 18)",tag:"hot"},
+      {text:"Update CRM/tracker with week's results",tag:"both"},
+      {text:"Light posts only — don't post-and-ghost, reply to any comments",tag:"both"}
+    ],
+    tip:"<strong>Memorial Day is May 25 — one week out.</strong> Cookout/backyard prep is the angle for both businesses. Start seeding it tomorrow. 'Is your yard ready for company?' hits hard for both TT and sheds."
+  },
+  18:{
+    theme:"🍖 Memorial Day Push Starts",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Cookout Kickoff",
+      copy:`Cookout season is HERE 🍖
+
+Memorial Day is next Monday. Before the guests arrive and the kids start running in the backyard...
+
+Is your yard ready?
+
+Tidy Tails STL does one-time deep cleans for $100. We get it done before your party.
+
+Text Jamie: 314-850-7140
+Or drop your zip code below and I'll tell you if we cover your area 📍
+
+tidytailsstl.com 🐾`
+    },
+    shed:{
+      label:"FB Post — Outdoor Living / Memorial Day",
+      copy:`Memorial Day is ONE WEEK AWAY 🇺🇸
+
+If your backyard isn't where you want it yet — a shed is the fastest fix.
+
+Get the clutter off the patio. Create a space people actually want to hang out in.
+
+Plenty of options on the lot. Free delivery.
+
+Text Darius: 636-354-7406
+🤑 Financing available if you want to move fast 🏠`
+    },
+    actions:[
+      {text:"POST DAILY this week — Memorial Day push is just as important as Mother's Day",tag:"hot"},
+      {text:"Post TT cookout angle in ALL STL dog FB groups",tag:"tt"},
+      {text:"Post shed outdoor living/Memorial Day angle in Marketplace + groups",tag:"shed"},
+      {text:"Text past one-time TT customers — 'Cookout coming up? Need a pre-party cleanup?'",tag:"tt"},
+      {text:"Make 1 commercial call — Millsap or Park Forest",tag:"tt"}
+    ],
+    tip:"<strong>One-time $100 cleanups are your Memorial Day entry point.</strong> Convert them to recurring AFTER they see the results. Don't lead with monthly pricing this week — lead with $100 and let the service do the selling."
+  },
+  19:{
+    theme:"🍖 Memorial Day Push",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Urgency Build",
+      copy:`Real talk: how long has it been since you cleaned the yard? 😅
+
+We're not judging. Dogs are relentless. It piles up fast (literally).
+
+If you've got a cookout, family visit, or outdoor event coming up for Memorial Day weekend — let Tidy Tails handle the cleanup.
+
+One-time deep clean: $100
+Weekly service after: $25/wk
+
+Text Jamie: 314-850-7140 🐾`
+    },
+    shed:{
+      label:"FB Post — Summer Project Angle",
+      copy:`Summer projects don't do themselves 🏠
+
+If 'add storage' or 'build a workshop' has been on the list for 2+ years...
+
+It's a $0 down, rent-to-own situation now.
+
+No credit check. Low weekly payments. FREE delivery.
+
+Summer's starting. Text Darius and let's actually get it done: 636-354-7406`
+    },
+    actions:[
+      {text:"Text past one-time TT customers from spring — Memorial Day cleanup offer",tag:"tt"},
+      {text:"Post TT 'real talk' copy in FB groups",tag:"tt"},
+      {text:"Post shed summer project angle in Marketplace",tag:"shed"},
+      {text:"Follow up any shed leads from last week",tag:"shed"},
+      {text:"Nextdoor post for TT — Memorial Day angle",tag:"tt"}
+    ],
+    tip:"<strong>Text past one-time customers personally.</strong> These are warm leads — they already paid you once. A simple 'Hey [Name], Memorial Day weekend coming up — want us to do a pre-party cleanup? $100, same as before.' usually gets a yes or a referral."
+  },
+  20:{
+    theme:"🍖 Memorial Day Push",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — One-Time CTA",
+      copy:`Memorial Day weekend = family in the yard 🐾
+
+If you've been putting off a cleanup all spring — THIS is the week.
+
+Tidy Tails STL does one-time deep cleans for $100. We pick up every bit. You get a fresh yard before the guests show up.
+
+Also doing weekly service from $25/wk if you want it handled all summer.
+
+Comment 'CLEAN' or text Jamie: 314-850-7140`
+    },
+    shed:{
+      label:"FB Post — Price Urgency",
+      copy:`Update on shed pricing: lumber is up again.
+
+Tariffs on imported lumber (45%+) keep pushing material costs higher. The sheds we're selling TODAY will cost more to build in 60 days.
+
+If you've been waiting for the 'right time' — this is closer to it than next month.
+
+Text Darius for current pricing: 636-354-7406
+Free delivery. Financing available. 🏠`
+    },
+    actions:[
+      {text:"Post TT 'CLEAN' comment call-to-action — engagement post drives algorithm",tag:"tt"},
+      {text:"Post GBP update for Tidy Tails — Memorial Day one-time cleanup",tag:"tt"},
+      {text:"Post shed tariff urgency in Marketplace + groups",tag:"shed"},
+      {text:"Follow up ALL commercial TT leads this week",tag:"hot"},
+      {text:"Update Marketplace listings — refresh photos or copy if stale",tag:"shed"}
+    ],
+    tip:"<strong>Comment-bait posts work.</strong> 'Comment CLEAN below' = more engagement = FB algorithm shows it to more people = free reach. Always have ONE clear action in your post."
+  },
+  21:{
+    theme:"📞 Commercial Day",themeClass:"",
+    tt:{
+      label:"FB Group Post — Neighbor Angle",
+      copy:`STL neighbors — quick question 👋
+
+Do you see dog waste sitting in yards around your neighborhood?
+
+Pet waste left out is actually an environmental issue — it contaminates runoff and contributes to water pollution.
+
+Tidy Tails STL handles residential pet waste removal starting at $25/week. We're local, we're reliable, and we cover most of St. Louis County.
+
+Tag a neighbor who needs this or text Jamie: 314-850-7140 🐾`
+    },
+    shed:{
+      label:"FB Post — Workshop Season",
+      copy:`June is around the corner and workshop season is officially here 🔧
+
+If you've been doing projects in the garage, the basement, or not at all because you have no space —
+
+A dedicated workshop shed changes everything.
+
+Custom layouts. Electrical rough-in available. Workbench options.
+
+Text Darius to talk through options: 636-354-7406
+Free delivery to St. Louis area 🏠`
+    },
+    actions:[
+      {text:"Make 3 commercial calls — use the Calling Hub script",tag:"hot"},
+      {text:"Post TT neighbor/eco angle in Nextdoor (best platform for this angle)",tag:"tt"},
+      {text:"Post shed workshop angle in Marketplace + groups",tag:"shed"},
+      {text:"Respond to ALL Marketplace messages same-day today",tag:"shed"},
+      {text:"Follow up Zachson HOA — any decision yet?",tag:"tt"}
+    ],
+    tip:"<strong>3 commercial calls = 15 minutes.</strong> Even if nobody picks up, leaving a voicemail + sending a follow-up text counts. Consistency over 2 weeks beats a perfect pitch every time."
+  },
+  22:{
+    theme:"🍖 Pre-Memorial Day",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — Before the Long Weekend",
+      copy:`Long weekend is in 3 days 🇺🇸
+
+If you're hosting family, having friends over, or just want to enjoy the backyard without watching where you step —
+
+Tidy Tails STL can get you cleaned up before Saturday.
+
+One-time deep clean: $100
+Takes us 20–45 min. You're free all weekend.
+
+Text Jamie TODAY: 314-850-7140 🐾`
+    },
+    shed:{
+      label:"FB Post — Memorial Day Inventory",
+      copy:`Memorial Day weekend = backyard life 🇺🇸
+
+If yours still has the lawnmower, the bikes, the coolers, and everything else taking up patio space —
+
+A shed fixes that permanently.
+
+Plenty on the lot. Free delivery available next week.
+
+Text Darius: 636-354-7406
+Financing & rent-to-own available 🏠`
+    },
+    actions:[
+      {text:"GBP post for BOTH businesses — Memorial Day angle",tag:"both"},
+      {text:"Post TT 'before the long weekend' in all groups",tag:"tt"},
+      {text:"Post shed Memorial Day inventory post",tag:"shed"},
+      {text:"Text past TT one-time customers — final Memorial Day push",tag:"tt"},
+      {text:"Check and refresh all Marketplace shed listings",tag:"shed"}
+    ],
+    tip:"<strong>GBP posts take 5 minutes and are pure SEO value.</strong> Post a photo + 3 sentences on BOTH Google Business Profiles today. It costs nothing and helps local ranking every week it's up."
+  },
+  23:{
+    theme:"🍖 Memorial Day Push PEAK",themeClass:"hot",
+    tt:{
+      label:"FB Group Post — PUSH Day",
+      copy:`2 days until Memorial Day weekend 🇺🇸🐾
+
+Is your yard guest-ready?
+
+Tidy Tails STL is still booking cleanups for before the weekend. One-time deep clean = $100.
+
+We cover Florissant, Hazelwood, Ferguson, O'Fallon, St. Peters, Maryland Heights, St. Charles, and surrounding areas.
+
+Text Jamie NOW: 314-850-7140
+
+Don't wait until Friday — we fill up fast 🙏`
+    },
+    shed:{
+      label:"FB Post — Memorial Day Sale Push",
+      copy:`Last chance before Memorial Day for current pricing 🇺🇸
+
+If you want a shed installed before summer, we need to get the order in.
+
+Delivery timelines are tight. Don't wait until the cookout to wish you had a workshop.
+
+Text Darius today: 636-354-7406
+Free delivery. Financing. We'll get it done. 🏠`
+    },
+    actions:[
+      {text:"PEAK PUSH — post in every group for TT",tag:"hot"},
+      {text:"Text ALL warm TT leads — last chance for Memorial Day cleanup",tag:"tt"},
+      {text:"Post shed final Memorial Day push",tag:"shed"},
+      {text:"Check shed lot for any new inventory or hot listings to promote",tag:"shed"},
+      {text:"Prep Monday scooping route — busiest week of spring",tag:"tt"}
+    ],
+    tip:"<strong>Saturday 2 days before = highest urgency moment.</strong> People are thinking about their weekend and suddenly realize their yard isn't ready. Your post showing up RIGHT NOW in their feed = perfect timing."
+  },
+  24:{
+    theme:"🏁 Memorial Day Eve",themeClass:"",
+    tt:{
+      label:"FB Post — Last Call",
+      copy:`TOMORROW: Memorial Day 🇺🇸
+
+Last call for pre-holiday yard cleanups.
+
+If you're in St. Louis County and want it done before guests arrive — text Jamie right now: 314-850-7140
+
+One-time: $100. Takes us 30–45 min.
+
+Enjoy your holiday weekend without watching where you step 🐾`
+    },
+    shed:{
+      label:"FB Post — Pre-Holiday",
+      copy:`Happy almost Memorial Day 🇺🇸
+
+Hoping everyone gets to enjoy a clean garage, a full backyard, and maybe even a shed they've been putting off 😂
+
+Text Darius if you want to talk options next week: 636-354-7406
+No pressure — just options. 🏠`
+    },
+    actions:[
+      {text:"Final TT text blast to warm leads — Memorial Day eve",tag:"tt"},
+      {text:"Confirm all new TT signups from this week have start dates",tag:"tt"},
+      {text:"Post pre-holiday content for both businesses",tag:"both"},
+      {text:"Prep MONDAY scooping — biggest route week of spring",tag:"tt"},
+      {text:"Rest up — long weekend ahead",tag:"both"}
+    ],
+    tip:"<strong>Confirmation texts seal the deal.</strong> Any new signup who hasn't gotten a 'we start [date], see you then!' text from Jamie should get one today. Silence after signup = cancellations."
+  },
+  25:{
+    theme:"🇺🇸 MEMORIAL DAY",themeClass:"hot",
+    tt:{
+      label:"Memorial Day Post — Celebration",
+      copy:`Happy Memorial Day from Tidy Tails STL 🇺🇸🐾
+
+Thank you to everyone who served. Enjoy the cookouts, the dogs, and the clean yard — you earned it.
+
+— Jamie & the Tidy Tails crew 💚`
+    },
+    shed:{
+      label:"Memorial Day Post — Sheds",
+      copy:`Happy Memorial Day 🇺🇸
+
+To everyone who served — thank you.
+
+Enjoy the day, the backyard, and whatever you've got going on.
+
+— Darius & the TuffShed/WoodMaster STL team 🏠`
+    },
+    actions:[
+      {text:"SCOOPING DAY — Monday route in the books",tag:"tt"},
+      {text:"Post celebration content — NO pitching today",tag:"hot"},
+      {text:"Text existing TT customers: Happy Memorial Day — no ask",tag:"tt"},
+      {text:"Log any new customers closed this week into CRM",tag:"tt"},
+      {text:"Enjoy the holiday 🍖",tag:"both"}
+    ],
+    tip:"<strong>Like Mother's Day — zero selling today.</strong> Just show up, scoop yards, celebrate. The conversion window for new leads is Tuesday–Thursday next week."
+  },
+  26:{
+    theme:"📞 Post-Holiday Follow-Up",themeClass:"",
+    tt:{
+      label:"FB Group Post — Post-Memorial Day",
+      copy:`How's everyone's yard looking after the long weekend? 😅
+
+If the answer involves multiple dogs and three days of cookout traffic... we should talk 😂
+
+Tidy Tails STL is taking new clients for June. Weekly service from $25/wk.
+
+Text Jamie: 314-850-7140
+tidytailsstl.com 🐾`
+    },
+    shed:{
+      label:"FB Post — Summer Starts Now",
+      copy:`Memorial Day is done. Summer officially starts now. 🌞
+
+If you spent the weekend wishing you had more outdoor space...
+
+We've got sheds on the lot that can change that.
+
+Workshop. Storage. Man cave. She shed. Whatever you need.
+
+Text Darius: 636-354-7406
+Free delivery. Financing available. 🏠`
+    },
+    actions:[
+      {text:"Follow up ALL Memorial Day TT leads — Tuesday is peak conversion",tag:"hot"},
+      {text:"Post TT 'how's your yard looking' post in groups",tag:"tt"},
+      {text:"Post shed 'summer starts now' in Marketplace + groups",tag:"shed"},
+      {text:"Call any commercial leads who were 'thinking about it'",tag:"tt"},
+      {text:"Update CRM with Memorial Day weekend results",tag:"both"}
+    ],
+    tip:"<strong>Post-holiday follow-up day is as important as the holiday push itself.</strong> People who were 'too busy to respond' over the weekend are reachable today. Strike while it's fresh."
+  },
+  27:{
+    theme:"☀️ Summer Recurring Push",themeClass:"",
+    tt:{
+      label:"FB Group Post — Summer Sign-Ups",
+      copy:`Summer is officially here and yards across St. Louis are getting busy 🐾
+
+If you want to enjoy your backyard ALL summer without dealing with waste cleanup every week —
+
+Tidy Tails STL has openings for June.
+
+✅ Weekly: $25/wk
+✅ Biweekly: $45
+✅ Monthly flat: $70
+
+Text Jamie to get on the schedule: 314-850-7140
+tidytailsstl.com 💚`
+    },
+    shed:{
+      label:"FB Post — Summer Outdoor Living",
+      copy:`Summer outdoor living checklist ✅
+
+✅ Grill — check
+✅ Patio furniture — check  
+✅ Somewhere to put all the extra stuff — ❌
+
+A shed gives you the storage to actually ENJOY the backyard.
+
+Starting lower than you'd think. Free delivery. Financing options.
+
+Text Darius: 636-354-7406 🏠`
+    },
+    actions:[
+      {text:"Directory submission day — submit TT to 1 new directory (Bark.com, Angi, etc.)",tag:"tt"},
+      {text:"Post TT summer recurring push in groups",tag:"tt"},
+      {text:"Post shed summer checklist angle in Marketplace + groups",tag:"shed"},
+      {text:"Follow up commercial leads from last week",tag:"tt"},
+      {text:"Check GBP for both businesses — any new reviews to respond to?",tag:"both"}
+    ],
+    tip:"<strong>Directory submissions are the off-page SEO fix you keep skipping.</strong> 45 minutes = 5 directories = permanent backlinks. Pick one today: Bark.com is easiest. Log it in the citation tracker."
+  },
+  28:{
+    theme:"🙏 Referral Push Day",themeClass:"",
+    tt:{
+      label:"Customer Referral Text (send to all 11)",
+      copy:`Hey [Name]! Hope summer is treating you well 🙏
+
+Quick ask — do you know any neighbors or friends with dogs who'd love a clean yard? 
+
+We've got a few June openings left and referrals from customers like you are how we grow.
+
+Even just a share or a tag helps! Or send them Jamie's number: 314-850-7140
+
+Thank you! 🐾 — Tidy Tails STL`
+    },
+    shed:{
+      label:"FB Post — Custom Build Angle",
+      copy:`Fun fact: we do custom sheds 🏗️
+
+Meaning: you pick the size, color, roof style, windows, doors, shelving, electrical rough-in...
+
+We build it to your specs. FREE delivery.
+
+Most people don't know this is even an option. Now you do.
+
+Text Darius to talk through what you're thinking: 636-354-7406 🏠`
+    },
+    actions:[
+      {text:"TEXT all 11 TT customers with the referral copy above — personal, not mass",tag:"hot"},
+      {text:"Post TT in FB groups — tag-a-friend referral angle",tag:"tt"},
+      {text:"Post shed custom build angle in Marketplace",tag:"shed"},
+      {text:"Follow up any shed Marketplace leads from this week",tag:"shed"},
+      {text:"Log any referral responses in CRM",tag:"tt"}
+    ],
+    tip:"<strong>Referral texts are your highest-ROI 10 minutes.</strong> Each message takes 30 seconds to personalize. 11 texts = potentially 5+ new leads from people who already trust you. Do this every month."
+  },
+  29:{
+    theme:"📣 End of Month Push",themeClass:"",
+    tt:{
+      label:"FB Group Post — June Preview",
+      copy:`June is almost here 🌞
+
+Tidy Tails STL is getting routes set for the month. A few spots still open.
+
+If you've been meaning to get started — now's the time before summer fully hits and schedules fill up.
+
+Weekly: $25/wk | Biweekly: $45 | Monthly: $70 flat
+
+Text Jamie: 314-850-7140
+tidytailsstl.com 🐾`
+    },
+    shed:{
+      label:"FB Marketplace — Listing Refresh Day",
+      copy:`📍 St. Charles lot update — we just got new inventory in 🏠
+
+Fresh sheds, garages, and storage buildings. Sizes from 8x8 to 16x24 and beyond.
+
+If you've been watching but waiting for the right one — come take a look this weekend.
+
+Text Darius for availability: 636-354-7406
+FREE delivery. Financing options available.`
+    },
+    actions:[
+      {text:"Refresh ALL Marketplace shed listings — update photos, copy, or title",tag:"shed"},
+      {text:"Post TT June preview in all FB groups",tag:"tt"},
+      {text:"Post shed new inventory update in Marketplace",tag:"shed"},
+      {text:"Follow up all warm TT leads from May",tag:"tt"},
+      {text:"Log May results: new customers, total MRR, commercial progress",tag:"both"}
+    ],
+    tip:"<strong>Marketplace listings go stale after 7 days.</strong> FB shows newer listings higher. Refreshing means re-uploading photos or editing the description — either works. Do all listings today so June starts fresh."
+  },
+  30:{
+    theme:"🐕 Scooping + Social",themeClass:"green",
+    tt:{
+      label:"Saturday Social — Quick Engagement",
+      copy:`Saturday morning with the dogs 🐾
+
+Tidy Tails STL is out on routes today. Yards getting cleaned across St. Louis County.
+
+If you want in for next week — a couple spots are still open.
+
+Text Jamie: 314-850-7140 💚`
+    },
+    shed:{
+      label:"FB Post — Weekend Lot Visit",
+      copy:`Nice Saturday to shop for a shed 🏠
+
+📍 Come see us: 5520 Westwood Dr, Saint Charles
+
+Dozens on the lot. Walk through them. No pressure. No appointment needed.
+
+Text Darius if you have questions: 636-354-7406
+Free delivery anywhere in STL area`
+    },
+    actions:[
+      {text:"SCOOPING DAY — complete route",tag:"tt"},
+      {text:"Post quick TT 'on route today' content",tag:"tt"},
+      {text:"Post shed lot visit for Saturday traffic",tag:"shed"},
+      {text:"Note any customer feedback from today's scoops",tag:"tt"},
+      {text:"Respond to any FB comments or DMs from the week",tag:"both"}
+    ],
+    tip:"<strong>One photo from the route = best content you'll post all week.</strong> Before yard / after yard. Back of truck. Anything real. Authentic beats polished every time for local service businesses."
+  },
+  31:{
+    theme:"📊 Month Wrap + June Prep",themeClass:"green",
+    tt:{
+      label:"Sunday Month Wrap Post",
+      copy:`May is done. What a month 🌸
+
+Tidy Tails STL has been serving St. Louis County all spring and we're grateful for every customer and every referral.
+
+June is filling up. If you want to start fresh this summer — text Jamie: 314-850-7140
+
+Big things coming in June 💚🐾`
+    },
+    shed:{
+      label:"FB Post — June Preview",
+      copy:`May is wrapping up. June is the biggest outdoor living month of the year.
+
+If a shed was on the summer list — June is when people stop planning and start doing.
+
+We'll be ready. Text Darius when you are: 636-354-7406
+Free delivery. Financing available. No pressure. 🏠`
+    },
+    actions:[
+      {text:"COUNT THE MAY WINS: new TT customers, total MRR, commercial closes",tag:"hot"},
+      {text:"Update MEMORY.md with May results and any lessons",tag:"both"},
+      {text:"Post month wrap for both businesses",tag:"both"},
+      {text:"Plan June: Father's Day is Jun 21 — seed starts Jun 8",tag:"both"},
+      {text:"Review any overdue commercial leads — schedule June calls now",tag:"tt"}
+    ],
+    tip:"<strong>Measure May before June starts.</strong> New customers? MRR change? Commercial calls made? If you don't track it, you can't improve it. Even a quick tally in 10 minutes gives you a baseline."
+  }
+};
+
+// ── BUILD CALENDAR ──
+const firstDay = 5; // May 1, 2026 = Friday (0=Sun, 5=Fri)
+const totalDays = 31;
+const grid = document.getElementById('cal-grid');
+
+for(let i = 0; i < firstDay; i++){
+  const empty = document.createElement('div');
+  empty.className = 'cal-day empty';
+  grid.appendChild(empty);
+}
+
+for(let d = 1; d <= totalDays; d++){
+  const cell = document.createElement('div');
+  cell.className = 'cal-day';
+  cell.dataset.day = d;
+
+  // Special days
+  if([4,5,6,7,8,9,10,18,19,20,21,22,23,25].includes(d)) cell.classList.add('hot-day');
+  if([10,25].includes(d)) cell.classList.add('event-day');
+
+  cell.innerHTML = `
+    <div class="day-num">${d}</div>
+    <div class="day-dots">
+      <div class="dot tt"></div>
+      <div class="dot shed"></div>
+      ${days[d]?.actions ? '<div class="dot action"></div>' : ''}
+    </div>`;
+
+  cell.addEventListener('click', () => renderDay(d));
+  grid.appendChild(cell);
+}
+
+// ── RENDER DAY ──
+function renderDay(d){
+  // Update selection
+  document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+  document.querySelector(`[data-day="${d}"]`)?.classList.add('selected');
+
+  const data = days[d];
+  if(!data) return;
+
+  const dateStr = `MAY ${d}, 2026 — ${getDayName(d)}`;
+  const detail = document.getElementById('detail-col');
+
+  const actionItems = data.actions.map((a,i) => `
+    <li class="action-item">
+      <input type="checkbox" id="act-${d}-${i}" onchange="toggleDone(this)">
+      <label for="act-${d}-${i}">${a.text} <span class="action-tag tag-${a.tag}">${a.tag.toUpperCase()}</span></label>
+    </li>`).join('');
+
+  detail.innerHTML = `
+    <div class="day-header">
+      <div>
+        <div class="day-title">May ${d}</div>
+        <div class="day-date">${dateStr}</div>
+      </div>
+      <div class="day-theme ${data.themeClass}">${data.theme}</div>
+    </div>
+
+    <div class="biz-section tt-section">
+      <div class="biz-label">
+        <div class="biz-icon tt-icon">🐕</div>
+        <div>
+          <div class="biz-name">Tidy Tails STL</div>
+          <div class="biz-sub">${data.tt.label}</div>
+        </div>
+      </div>
+      <div class="copy-label">Ready-to-paste copy</div>
+      <div class="copy-box" onclick="copyBox(this)" id="tt-copy-${d}">
+        ${escHtml(data.tt.copy)}
+        <span class="copy-toast">✓ COPIED</span>
+      </div>
+      <button class="copy-btn tt-btn" onclick="copyText('tt-copy-${d}')">📋 Copy Tidy Tails Post</button>
+    </div>
+
+    <div class="biz-section shed-section">
+      <div class="biz-label">
+        <div class="biz-icon shed-icon">🏠</div>
+        <div>
+          <div class="biz-name">TuffShed / WoodMaster STL</div>
+          <div class="biz-sub">${data.shed.label}</div>
+        </div>
+      </div>
+      <div class="copy-label">Ready-to-paste copy</div>
+      <div class="copy-box" onclick="copyBox(this)" id="shed-copy-${d}">
+        ${escHtml(data.shed.copy)}
+        <span class="copy-toast">✓ COPIED</span>
+      </div>
+      <button class="copy-btn shed-btn" onclick="copyText('shed-copy-${d}')">📋 Copy Shed Post</button>
+    </div>
+
+    <div class="biz-section actions-section">
+      <div class="biz-label">
+        <div class="biz-icon action-icon">✅</div>
+        <div>
+          <div class="biz-name">Today's Game Plan</div>
+          <div class="biz-sub">${data.actions.length} action items</div>
+        </div>
+      </div>
+      <ul class="action-list">${actionItems}</ul>
+      ${data.tip ? `<div class="tip-box">💡 ${data.tip}</div>` : ''}
+    </div>`;
+
+  // Restore checkboxes from localStorage
+  data.actions.forEach((_,i) => {
+    const key = `chk-${d}-${i}`;
+    const cb = document.getElementById(`act-${d}-${i}`);
+    if(cb && localStorage.getItem(key) === '1'){
+      cb.checked = true;
+      cb.nextElementSibling?.classList.add('done');
+    }
+  });
+
+  // Scroll to top on mobile
+  if(window.innerWidth < 769) detail.scrollIntoView({behavior:'smooth'});
+}
+
+function escHtml(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function copyBox(el){
+  const text = el.innerText.replace('✓ COPIED','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = el.querySelector('.copy-toast');
+    if(toast){ toast.style.display='block'; setTimeout(()=>toast.style.display='none',1800); }
+  });
+}
+
+function copyText(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const text = el.innerText.replace('✓ COPIED','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = el.querySelector('.copy-toast');
+    if(toast){ toast.style.display='block'; setTimeout(()=>toast.style.display='none',1800); }
+  });
+}
+
+function toggleDone(cb){
+  const label = cb.nextElementSibling;
+  if(label) label.classList.toggle('done', cb.checked);
+  const id = cb.id;
+  const parts = id.split('-');
+  const key = `chk-${parts[1]}-${parts[2]}`;
+  localStorage.setItem(key, cb.checked ? '1' : '0');
+}
+
+function getDayName(d){
+  const date = new Date(2026, 4, d);
+  return ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][date.getDay()];
+}
+
+// Auto-open today if it's May
+const now = new Date();
+if(now.getMonth() === 4 && now.getFullYear() === 2026){
+  renderDay(now.getDate());
+}
+</script>
+</body>
+</html>
