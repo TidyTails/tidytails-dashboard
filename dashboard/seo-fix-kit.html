@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — SEO Fix Kit</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #f0f0f0; min-height: 100vh; }
+  
+  header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 30px 20px; text-align: center; border-bottom: 2px solid #00d4aa; }
+  header h1 { font-size: 28px; font-weight: 800; color: #00d4aa; }
+  header p { color: #aaa; margin-top: 8px; font-size: 14px; }
+  
+  .grade-banner { background: #1a1a2e; padding: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid #222; }
+  .grade-item { text-align: center; background: #0f0f0f; border-radius: 12px; padding: 16px 20px; min-width: 100px; border: 1px solid #222; }
+  .grade-item .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .grade-item .grade { font-size: 36px; font-weight: 900; margin: 4px 0; }
+  .grade-A { color: #00d4aa; }
+  .grade-B { color: #7bc8f0; }
+  .grade-C { color: #f0c040; }
+  .grade-D { color: #f06040; }
+  .grade-F { color: #ff4444; }
+
+  .tabs { display: flex; background: #1a1a1a; border-bottom: 1px solid #222; overflow-x: auto; }
+  .tab { padding: 14px 22px; cursor: pointer; font-size: 13px; font-weight: 600; color: #888; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab.active { color: #00d4aa; border-bottom-color: #00d4aa; background: #0f0f0f; }
+  .tab:hover { color: #ccc; }
+
+  .content { display: none; padding: 24px 20px; max-width: 900px; margin: 0 auto; }
+  .content.active { display: block; }
+
+  .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card h3 { font-size: 16px; font-weight: 700; color: #00d4aa; margin-bottom: 12px; }
+  .card p { color: #ccc; font-size: 14px; line-height: 1.6; margin-bottom: 10px; }
+  
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+  .badge-good { background: #003d2e; color: #00d4aa; }
+  .badge-warn { background: #3d3000; color: #f0c040; }
+  .badge-bad { background: #3d0000; color: #ff4444; }
+  .badge-fixed { background: #003d2e; color: #00d4aa; }
+
+  .code-block { background: #0a0a0a; border: 1px solid #333; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #00d4aa; overflow-x: auto; white-space: pre; line-height: 1.6; margin: 12px 0; max-height: 400px; overflow-y: auto; }
+  
+  .copy-btn { background: #00d4aa; color: #000; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 700; margin-top: 10px; transition: background 0.2s; }
+  .copy-btn:hover { background: #00b090; }
+  .copy-btn.copied { background: #555; color: #fff; }
+
+  .step { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+  .step-num { background: #00d4aa; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; flex-shrink: 0; }
+  .step-content h4 { font-size: 15px; font-weight: 700; color: #f0f0f0; margin-bottom: 4px; }
+  .step-content p { font-size: 13px; color: #aaa; line-height: 1.5; }
+  .step-content a { color: #00d4aa; text-decoration: none; }
+  .step-content a:hover { text-decoration: underline; }
+
+  .checklist { list-style: none; }
+  .checklist li { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1f1f1f; font-size: 14px; color: #ccc; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: #00d4aa; flex-shrink: 0; }
+  .checklist .priority { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 700; }
+  .p-high { background: #3d0a00; color: #ff6b35; }
+  .p-med { background: #3d3000; color: #f0c040; }
+  .p-low { background: #003030; color: #00aaaa; }
+
+  .finding { padding: 12px 16px; border-left: 4px solid #333; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+  .finding.good { border-color: #00d4aa; background: #001a14; }
+  .finding.warn { border-color: #f0c040; background: #1a1600; }
+  .finding.bad { border-color: #ff4444; background: #1a0000; }
+  .finding h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .finding p { font-size: 12px; color: #aaa; }
+  .finding.good h4 { color: #00d4aa; }
+  .finding.warn h4 { color: #f0c040; }
+  .finding.bad h4 { color: #ff4444; }
+
+  .dir-entry { background: #111; border: 1px solid #222; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+  .dir-entry h4 { font-size: 15px; font-weight: 700; color: #f0f0f0; display: flex; align-items: center; gap: 10px; }
+  .dir-entry p { font-size: 13px; color: #999; margin-top: 6px; }
+  .dir-link { display: inline-block; margin-top: 10px; background: #00d4aa; color: #000; padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; }
+  .dir-link:hover { background: #00b090; }
+  .priority-tag { font-size: 10px; padding: 3px 8px; border-radius: 10px; font-weight: 700; }
+
+  .nap-box { background: #0a1a14; border: 2px solid #00d4aa; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .nap-box h3 { color: #00d4aa; font-size: 15px; margin-bottom: 12px; }
+  .nap-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a2a22; }
+  .nap-row:last-child { border-bottom: none; }
+  .nap-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nap-value { font-size: 14px; color: #f0f0f0; font-weight: 600; }
+
+  @media(max-width:600px) {
+    .grade-banner { gap: 10px; }
+    .grade-item { min-width: 70px; padding: 12px; }
+    .grade-item .grade { font-size: 28px; }
+    header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🐕 Tidy Tails — SEO Fix Kit</h1>
+  <p>Audit Date: April 20, 2026 &nbsp;|&nbsp; Overall Grade: C+ &nbsp;|&nbsp; Action Required</p>
+</header>
+
+<div class="grade-banner">
+  <div class="grade-item"><div class="label">Technical</div><div class="grade grade-A">A</div></div>
+  <div class="grade-item"><div class="label">On-Page</div><div class="grade grade-B">B+</div></div>
+  <div class="grade-item"><div class="label">Local SEO</div><div class="grade grade-B">B</div></div>
+  <div class="grade-item"><div class="label">Rankings</div><div class="grade grade-D">D</div></div>
+  <div class="grade-item"><div class="label">Backlinks</div><div class="grade grade-F">F</div></div>
+  <div class="grade-item"><div class="label">Schema</div><div class="grade grade-C">C</div></div>
+  <div class="grade-item"><div class="label">Directories</div><div class="grade grade-D">D</div></div>
+  <div class="grade-item"><div class="label">Overall</div><div class="grade grade-C">C+</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('audit')">📊 Full Audit</div>
+  <div class="tab" onclick="showTab('schema')">🏷️ Schema Code</div>
+  <div class="tab" onclick="showTab('directories')">📁 Directories</div>
+  <div class="tab" onclick="showTab('checklist')">✅ Action Plan</div>
+</div>
+
+<!-- AUDIT TAB -->
+<div id="tab-audit" class="content active">
+  <div class="card">
+    <h3>✅ What's Working</h3>
+    <div class="finding good"><h4>Technical Foundation — A</h4><p>Fast load (Cloudflare), SSL valid, robots.txt + sitemap.xml both live and correct. All pages return 200.</p></div>
+    <div class="finding good"><h4>Homepage Title & Meta — A-</h4><p>"Tidy Tails | Pet Waste Removal St. Louis" — solid. Shows in Brave/Google with good meta description.</p></div>
+    <div class="finding good"><h4>City Landing Pages — B+</h4><p>23 city pages confirmed live. /florissant, /ferguson, /commercial, /spring all returning 200. Good hyperlocal content.</p></div>
+    <div class="finding good"><h4>Pricing On-Page — A</h4><p>Pricing listed clearly on homepage. Google loves transparent pricing — it boosts conversions AND rankings.</p></div>
+    <div class="finding good"><h4>FAQ Section — A</h4><p>6 FAQs on homepage. Perfect for featured snippets. Keep these.</p></div>
+    <div class="finding good"><h4>Reviews Mentioned — B</h4><p>5.0 stars / 6 reviews shown on homepage. But no schema to tell Google about them (see Schema tab).</p></div>
+  </div>
+
+  <div class="card">
+    <h3>❌ What's Broken</h3>
+    <div class="finding bad"><h4>Search Rankings — D</h4><p>For "pooper scooper St Louis" — Yuckos, Scoop Soldiers, DoodyCalls, Poop2Scoop all rank above you. You only show for your brand name.</p></div>
+    <div class="finding bad"><h4>⚠️ DoodyCalls STL is ACTIVE</h4><p>They appeared in search results today for "pet waste removal St Louis." Previously thought to be dead — they are not. Monitor them.</p></div>
+    <div class="finding bad"><h4>Off-Page SEO / Backlinks — F</h4><p>Zero sites linking to you. This is the #1 wall between you and ranking for money keywords. Google needs social proof from other sites.</p></div>
+    <div class="finding bad"><h4>Brave/Bing/DuckDuckGo — F</h4><p>site:tidytailsstl.com returns ZERO results in Brave. You don't exist on 40% of searches.</p></div>
+    <div class="finding warn"><h4>Schema Markup — C</h4><p>No LocalBusiness, Service, or Review schema. You're leaving free star ratings in Google results on the table. Easy 20-30% CTR boost.</p></div>
+    <div class="finding warn"><h4>Directories — D</h4><p>Only GBP + Yelp. Need Angi, Thumbtack, Nextdoor Business, Bing Places, YellowPages minimum.</p></div>
+    <div class="finding warn"><h4>Homepage Nav — Missing Links</h4><p>/commercial and /spring may not be linked from homepage nav. Island pages = no SEO flow. Need to verify and fix in your Cloudflare site.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 The Core Problem</h3>
+    <p>Your on-page work is solid — the site reads well, loads fast, and has good content. The problem is <strong>off-page authority</strong>. Google doesn't know to trust you yet because:</p>
+    <p>① Nobody links to you &nbsp; ② You're not in directories &nbsp; ③ No schema to confirm who/what you are</p>
+    <p>Fix these three things and your rankings will climb fast — especially since most of your competitors are weak or dead.</p>
+  </div>
+</div>
+
+<!-- SCHEMA TAB -->
+<div id="tab-schema" class="content">
+  <div class="card">
+    <h3>🏷️ LocalBusiness Schema — Copy & Paste Into Homepage</h3>
+    <p>Paste this block just before the <code>&lt;/head&gt;</code> tag on your homepage. This tells Google your business name, phone, address, service area, prices, and reviews — unlocking rich snippets (star ratings in search results).</p>
+    <p><strong>⚡ Impact:</strong> Star ratings visible in Google = 20-30% more clicks. Takes 5 minutes to add.</p>
+    
+    <div class="code-block" id="schema-code">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://tidytailsstl.com",
+  "name": "Tidy Tails Pet Waste Removal",
+  "alternateName": "Tidy Tails STL",
+  "description": "Professional pet waste removal and pooper scooper service serving St. Louis County, St. Charles County, and surrounding areas. Weekly, bi-weekly, and monthly plans. No contracts. Locally owned.",
+  "url": "https://tidytailsstl.com",
+  "telephone": "+13148507140",
+  "priceRange": "$25-$100",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Saint Louis",
+    "addressRegion": "MO",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Florissant" },
+    { "@type": "City", "name": "Ferguson" },
+    { "@type": "City", "name": "Maryland Heights" },
+    { "@type": "City", "name": "O'Fallon" },
+    { "@type": "City", "name": "St. Charles" },
+    { "@type": "City", "name": "St. Peters" },
+    { "@type": "City", "name": "Chesterfield" },
+    { "@type": "City", "name": "Saint Louis" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Pet Waste Removal Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Weekly Pet Waste Removal",
+        "price": "25.00",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Bi-Weekly Pet Waste Removal",
+        "price": "45.00",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Monthly Pet Waste Removal",
+        "price": "70.00",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "One-Time Deep Clean",
+        "price": "100.00",
+        "priceCurrency": "USD"
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "6",
+    "bestRating": "5"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sarah M." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Jamie is amazing! He's reliable, thorough, and our yard has never looked better."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Mike D." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Best money I spend every month. Worth every penny."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Lisa T." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Jamie has been on time every single week for 6 months. Can't recommend enough!"
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/share/18FWk4b3gu/"
+  ]
+}
+&lt;/script&gt;</div>
+    <button class="copy-btn" onclick="copySchema()">📋 Copy Schema Code</button>
+  </div>
+
+  <div class="card">
+    <h3>📍 How to Add It (Step by Step)</h3>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Open your site's homepage HTML</h4>
+        <p>In Cloudflare Pages, go to your repo → find <code>index.html</code> (or however your homepage is structured)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Find <code>&lt;/head&gt;</code></h4>
+        <p>Search (Ctrl+F) for <code>&lt;/head&gt;</code> — it's near the top of the file</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Paste the schema block BEFORE it</h4>
+        <p>The schema code goes right before that closing head tag. Save the file.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Push to GitHub → Cloudflare auto-deploys</h4>
+        <p>Commit and push. Cloudflare will rebuild in ~1 minute.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Validate at Google's Rich Results Test</h4>
+        <p><a href="https://search.google.com/test/rich-results" target="_blank">search.google.com/test/rich-results</a> — paste your URL to confirm it's working</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTORIES TAB -->
+<div id="tab-directories" class="content">
+
+  <div class="nap-box">
+    <h3>📋 Your NAP — Use This EXACTLY on Every Directory</h3>
+    <div class="nap-row"><span class="nap-label">Business Name</span><span class="nap-value">Tidy Tails Pet Waste Removal</span></div>
+    <div class="nap-row"><span class="nap-label">Phone</span><span class="nap-value">(314) 850-7140</span></div>
+    <div class="nap-row"><span class="nap-label">Website</span><span class="nap-value">https://tidytailsstl.com</span></div>
+    <div class="nap-row"><span class="nap-label">City/State</span><span class="nap-value">Saint Louis, MO</span></div>
+    <div class="nap-row"><span class="nap-label">Category</span><span class="nap-value">Pet Waste Removal / Pet Services</span></div>
+    <div class="nap-row"><span class="nap-label">Hours</span><span class="nap-value">Mon–Sat 7AM–6PM</span></div>
+  </div>
+
+  <div style="background:#1a1a00;border:1px solid #444;border-radius:8px;padding:14px;margin-bottom:16px;">
+    <p style="font-size:13px;color:#f0c040;">⚠️ <strong>Golden Rule:</strong> Business name, phone, and city must be IDENTICAL on every single directory. Inconsistency kills your local ranking.</p>
+  </div>
+
+  <div class="dir-entry">
+    <h4>1. Bing Places <span class="priority-tag p-high" style="background:#3d0a00;color:#ff6b35;">🔥 FASTEST WIN</span></h4>
+    <p>Imports directly from your Google Business Profile. Takes 5 minutes. Covers Bing, DuckDuckGo, and Alexa searches — you're invisible there right now.</p>
+    <a class="dir-link" href="https://www.bingplaces.com" target="_blank">Open Bing Places →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>2. Angi (Angie's List) <span class="priority-tag p-high" style="background:#3d0a00;color:#ff6b35;">HIGH PRIORITY</span></h4>
+    <p>Massive domain authority. Strong backlink. Drives real local leads. Select "Pet Services" → "Pet Waste Removal."</p>
+    <a class="dir-link" href="https://www.angi.com/pro/registration" target="_blank">Register on Angi →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>3. Thumbtack <span class="priority-tag p-high" style="background:#3d0a00;color:#ff6b35;">HIGH PRIORITY</span></h4>
+    <p>Ranks in Google. Sends direct leads when customers search. Set 25-mile radius from 63136.</p>
+    <a class="dir-link" href="https://www.thumbtack.com/pro" target="_blank">Sign Up on Thumbtack →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>4. Nextdoor Business <span class="priority-tag" style="background:#3d0a00;color:#ff6b35;">HIGH PRIORITY</span></h4>
+    <p>Your #1 neighborhood platform. Hyper-targeted to the exact neighborhoods you serve. Free business page + post a local deal after setup.</p>
+    <a class="dir-link" href="https://business.nextdoor.com" target="_blank">Create Nextdoor Page →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>5. HomeAdvisor <span class="priority-tag p-med" style="background:#3d3000;color:#f0c040;">MEDIUM</span></h4>
+    <p>Sister site to Angi. If you do Angi first, check if HomeAdvisor auto-populates. If not, submit separately.</p>
+    <a class="dir-link" href="https://pro.homeadvisor.com" target="_blank">Register on HomeAdvisor →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>6. Bark.com <span class="priority-tag p-med" style="background:#3d3000;color:#f0c040;">MEDIUM</span></h4>
+    <p>Sends you direct quote requests when someone searches for pet services nearby.</p>
+    <a class="dir-link" href="https://www.bark.com/en/us/become-a-pro/" target="_blank">Join Bark.com →</a>
+  </div>
+
+  <div class="dir-entry">
+    <h4>7. YellowPages <span class="priority-tag p-low" style="background:#003030;color:#00aaaa;">LOW</span></h4>
+    <p>Old school but still indexed. Free backlink. Worth 5 minutes.</p>
+    <a class="dir-link" href="https://www.yellowpages.com/add-listing" target="_blank">Add YP Listing →</a>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>📝 Copy-Paste Descriptions</h3>
+    <p style="margin-bottom:10px;"><strong>Short (under 150 chars):</strong></p>
+    <div class="code-block" id="desc-short">Tidy Tails is St. Louis's trusted pet waste removal service. Weekly cleanup starting at $25. No contracts. Locally owned.</div>
+    <button class="copy-btn" onclick="copyText('desc-short', this)">Copy Short</button>
+
+    <p style="margin-top:16px;margin-bottom:10px;"><strong>Medium (under 300 chars):</strong></p>
+    <div class="code-block" id="desc-med">Professional pooper scooper service for families in St. Louis County and St. Charles County. Weekly, bi-weekly, and monthly plans starting at $25/week. No contracts ever. Same face, same day, every week. Text or call Jamie at (314) 850-7140.</div>
+    <button class="copy-btn" onclick="copyText('desc-med', this)">Copy Medium</button>
+
+    <p style="margin-top:16px;margin-bottom:10px;"><strong>Long (full bio):</strong></p>
+    <div class="code-block" id="desc-long">Tidy Tails is St. Louis's locally owned pet waste removal service, serving families across St. Louis County, St. Charles County, O'Fallon, Florissant, Ferguson, Maryland Heights, and surrounding areas.
+
+We offer weekly cleanup starting at $25/week, bi-weekly visits at $45/visit, and our unique $70/month flat rate — the only monthly plan in St. Louis. One-time deep cleans available at $100.
+
+No contracts. No lock-ins. No hidden fees. We earn your business every single visit. Jamie shows up on time, same day, same time, every week — and texts you when done.
+
+5.0 stars on Google from real St. Louis families. Your dogs deserve a clean yard. We make it happen.
+Call or text: (314) 850-7140</div>
+    <button class="copy-btn" onclick="copyText('desc-long', this)">Copy Long</button>
+  </div>
+</div>
+
+<!-- CHECKLIST TAB -->
+<div id="tab-checklist" class="content">
+  <div class="card">
+    <h3>✅ Your 30-Minute SEO Action Plan</h3>
+    <p style="margin-bottom:16px;">Ranked by impact. Do them in order.</p>
+
+    <ul class="checklist">
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c1')">
+        <span><strong>Add schema markup to homepage</strong> — paste the code from the Schema tab before &lt;/head&gt; and push to GitHub</span>
+        <span class="priority p-high">5 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c2')">
+        <span><strong>Bing Places</strong> — import from Google Business Profile. Covers Bing + DuckDuckGo. Fastest win.</span>
+        <span class="priority p-high">5 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c3')">
+        <span><strong>Angi registration</strong> — use the Long description above. Select Pet Waste Removal category.</span>
+        <span class="priority p-high">10 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c4')">
+        <span><strong>Thumbtack Pro signup</strong> — 25-mile radius from 63136, use Medium description.</span>
+        <span class="priority p-high">10 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c5')">
+        <span><strong>Nextdoor Business page</strong> — create page + post a local deal announcement immediately after.</span>
+        <span class="priority p-high">10 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c6')">
+        <span><strong>Add /commercial link to homepage nav</strong> — make sure it's visible, not a hidden island page.</span>
+        <span class="priority p-med">5 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c7')">
+        <span><strong>Validate schema</strong> — go to search.google.com/test/rich-results and paste tidytailsstl.com</span>
+        <span class="priority p-med">2 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c8')">
+        <span><strong>Bark.com</strong> — sign up as a pro for auto lead requests.</span>
+        <span class="priority p-med">10 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c9')">
+        <span><strong>YellowPages</strong> — free listing, 5 minutes, one more backlink.</span>
+        <span class="priority p-low">5 MIN</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="saveCheck(this,'c10')">
+        <span><strong>Ask 2-3 current customers</strong> to post about you on Nextdoor or Facebook with your website link. Best possible backlink.</span>
+        <span class="priority p-high">TEXT THEM NOW</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>⚠️ Competitor Alert</h3>
+    <p>DoodyCalls STL is ACTIVE in search results as of today. Previously thought to be dead — they are not. They serve commercial properties (apartments, HOAs). Monitor their activity and make sure your /commercial page is properly linked and visible.</p>
+  </div>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copySchema() {
+  const code = document.getElementById('schema-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = event.target;
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Schema Code'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyText(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = btn.textContent.includes('Short') ? 'Copy Short' : btn.textContent.includes('Med') ? 'Copy Medium' : 'Copy Long'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveCheck(el, key) {
+  localStorage.setItem('seo_' + key, el.checked);
+}
+
+window.onload = () => {
+  document.querySelectorAll('.checklist input').forEach((el, i) => {
+    const saved = localStorage.getItem('seo_c' + (i+1));
+    if (saved === 'true') el.checked = true;
+  });
+};
+</script>
+</body>
+</html>
