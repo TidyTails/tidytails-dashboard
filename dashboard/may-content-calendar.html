@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>May 2026 Content Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+      --text: #f5f5f5; --text2: #999; --text3: #555;
+      --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+      --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+      --teal: #06b6d4; --border: #2a2a2a; --radius: 12px;
+      --may: #22c55e;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+    .header {
+      background: linear-gradient(135deg, var(--bg2), #0a1a0a);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem 1rem; text-align:center;
+    }
+    .header h1 { font-size:1.4rem; font-weight:800; }
+    .header h1 span.dog { color: var(--orange); }
+    .header h1 span.shed { color: var(--teal); }
+    .header p { color:var(--text2); font-size:0.78rem; margin-top:0.3rem; }
+    .stats-bar { display:flex; justify-content:center; gap:1.5rem; margin-top:0.75rem; flex-wrap:wrap; }
+    .stat { text-align:center; }
+    .stat-val { font-size:1.2rem; font-weight:800; }
+    .stat-label { font-size:0.65rem; color:var(--text2); text-transform:uppercase; }
+    .stat-val.green { color:var(--green); }
+    .stat-val.teal { color:var(--teal); }
+    .stat-val.orange { color:var(--orange); }
+    .stat-val.yellow { color:var(--yellow); }
+    .progress-bar { max-width:600px; margin:0.75rem auto 0; height:6px; background:var(--bg4); border-radius:3px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--may); border-radius:3px; transition:width 0.4s; }
+    .filter-bar { display:flex; gap:0.5rem; justify-content:center; padding:1rem; flex-wrap:wrap; }
+    .filter-btn { padding:0.35rem 0.75rem; border-radius:8px; font-size:0.75rem; font-weight:600; border:1px solid var(--border); background:var(--bg3); color:var(--text2); cursor:pointer; transition:all 0.2s; font-family:inherit; }
+    .filter-btn.active, .filter-btn:hover { color:var(--bg); }
+    .filter-btn.f-all.active { background:var(--text); color:var(--bg); border-color:var(--text); }
+    .filter-btn.f-dog.active { background:var(--orange); border-color:var(--orange); }
+    .filter-btn.f-shed.active { background:var(--teal); border-color:var(--teal); }
+    .filter-btn.f-done.active { background:var(--green); border-color:var(--green); }
+    .filter-btn.f-todo.active { background:var(--purple); border-color:var(--purple); }
+    .container { max-width:1100px; margin:0 auto; padding:0 1rem 3rem; }
+    .week-section { margin-bottom:2rem; }
+    .week-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; padding:0.6rem 1rem; background:var(--bg3); border-radius:10px; border:1px solid var(--border); }
+    .week-header h2 { font-size:0.9rem; font-weight:700; }
+    .week-header .week-range { font-size:0.72rem; color:var(--text2); }
+    .week-header .week-count { margin-left:auto; font-size:0.7rem; color:var(--text3); font-family:'JetBrains Mono',monospace; }
+    .day-group { margin-bottom:1rem; }
+    .day-label { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text3); padding:0.25rem 0; margin-bottom:0.4rem; border-bottom:1px solid var(--border); }
+    .day-label.special { color:var(--may); border-color:var(--may); }
+    .posts-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:0.6rem; }
+    .post-card { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem; transition:all 0.2s; position:relative; }
+    .post-card:hover { border-color:var(--bg4); box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+    .post-card.done { opacity:0.5; }
+    .post-card.done .card-body { text-decoration:line-through; color:var(--text3); }
+    .card-header { display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:0.6rem; }
+    .platform-badge { display:inline-flex; align-items:center; gap:0.25rem; padding:0.15rem 0.5rem; border-radius:5px; font-size:0.62rem; font-weight:700; text-transform:uppercase; white-space:nowrap; flex-shrink:0; }
+    .pb-fb { background:rgba(59,130,246,0.2); color:#60a5fa; }
+    .pb-ig { background:rgba(236,72,153,0.2); color:#f472b6; }
+    .pb-nd { background:rgba(16,185,129,0.2); color:var(--green); }
+    .pb-gbp { background:rgba(251,191,36,0.2); color:var(--yellow); }
+    .pb-mp { background:rgba(168,85,247,0.2); color:var(--purple); }
+    .pb-all { background:rgba(255,107,53,0.2); color:var(--orange); }
+    .biz-badge { display:inline-flex; padding:0.15rem 0.5rem; border-radius:5px; font-size:0.58rem; font-weight:700; text-transform:uppercase; }
+    .bb-dog { background:rgba(255,107,53,0.15); color:var(--orange); }
+    .bb-shed { background:rgba(6,182,212,0.15); color:var(--teal); }
+    .card-title { font-size:0.8rem; font-weight:700; line-height:1.3; flex:1; }
+    .card-theme { font-size:0.68rem; color:var(--text2); margin-bottom:0.5rem; }
+    .card-body { font-size:0.73rem; color:var(--text2); line-height:1.5; max-height:120px; overflow:hidden; position:relative; transition:max-height 0.3s; }
+    .card-body.expanded { max-height:2000px; }
+    .card-body::after { content:''; position:absolute; bottom:0; left:0; right:0; height:30px; background:linear-gradient(transparent, var(--bg3)); pointer-events:none; }
+    .card-body.expanded::after { display:none; }
+    .card-actions { display:flex; gap:0.4rem; margin-top:0.65rem; align-items:center; }
+    .btn { padding:0.3rem 0.65rem; border-radius:7px; font-size:0.7rem; font-weight:600; border:none; cursor:pointer; font-family:inherit; transition:all 0.15s; }
+    .btn-expand { background:var(--bg4); color:var(--text2); }
+    .btn-expand:hover { color:var(--text); }
+    .btn-copy { background:rgba(59,130,246,0.2); color:#60a5fa; }
+    .btn-copy:hover { background:rgba(59,130,246,0.35); }
+    .btn-copy.copied { background:rgba(16,185,129,0.2); color:var(--green); }
+    .btn-done { background:var(--bg4); color:var(--text3); margin-left:auto; }
+    .btn-done:hover { color:var(--text); }
+    .post-card.done .btn-done { background:rgba(16,185,129,0.15); color:var(--green); }
+    .post-card[data-biz="dog"] .card-title { color:var(--orange); }
+    .post-card[data-biz="shed"] .card-title { color:var(--teal); }
+    .hidden { display:none !important; }
+    .month-banner { background:linear-gradient(135deg, rgba(34,197,94,0.08), rgba(255,107,53,0.06)); border:1px solid rgba(34,197,94,0.3); border-radius:12px; padding:0.85rem 1rem; margin-bottom:1.5rem; }
+    .month-banner h3 { font-size:0.9rem; font-weight:800; color:var(--may); margin-bottom:0.3rem; }
+    .month-banner p { font-size:0.73rem; color:var(--text2); line-height:1.6; }
+    .month-banner .chips { display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.6rem; }
+    .chip { font-size:0.63rem; font-weight:700; padding:0.2rem 0.55rem; border-radius:5px; background:var(--bg4); color:var(--text2); }
+    .chip.hot { background:rgba(239,68,68,0.15); color:var(--red); }
+    .chip.green { background:rgba(34,197,94,0.15); color:var(--may); }
+    .chip.orange { background:rgba(255,107,53,0.15); color:var(--orange); }
+    .chip.teal { background:rgba(6,182,212,0.15); color:var(--teal); }
+    .chip.yellow { background:rgba(251,191,36,0.15); color:var(--yellow); }
+    .chip.purple { background:rgba(139,92,246,0.15); color:var(--purple); }
+    .chip.pink { background:rgba(236,72,153,0.15); color:#f472b6; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌸 May 2026 Content Calendar — <span class="dog">🐕 Tidy Tails</span> + <span class="shed">🏠 Sheds</span></h1>
+  <p>Daily copy-paste posts for both businesses • Mark done to track progress</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val green" id="stat-done">0</div><div class="stat-label">Posted ✅</div></div>
+    <div class="stat"><div class="stat-val orange" id="stat-todo">0</div><div class="stat-label">Remaining</div></div>
+    <div class="stat"><div class="stat-val teal" id="stat-shed">0</div><div class="stat-label">Shed Posts</div></div>
+    <div class="stat"><div class="stat-val yellow" id="stat-dog">0</div><div class="stat-label">Dog Posts</div></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn f-all active" onclick="setFilter('all', this)">All Posts</button>
+  <button class="filter-btn f-dog" onclick="setFilter('dog', this)">🐕 Tidy Tails Only</button>
+  <button class="filter-btn f-shed" onclick="setFilter('shed', this)">🏠 Sheds Only</button>
+  <button class="filter-btn f-todo" onclick="setFilter('todo', this)">📌 Not Posted Yet</button>
+  <button class="filter-btn f-done" onclick="setFilter('done', this)">✅ Posted</button>
+</div>
+
+<div class="container" id="main-container">
+
+  <div class="month-banner">
+    <h3>🌸 May — Mother's Day + Memorial Day Month</h3>
+    <p>May has two of the biggest gifting/outdoor moments of the year. Mother's Day (May 10) is your hook for both businesses — clean yard = gift for mom, dream garden shed = gift for mom. Memorial Day (May 25) kicks off backyard season. Leads who sign up now are your summer customers.</p>
+    <div class="chips">
+      <span class="chip pink">🌸 Mother's Day May 10</span>
+      <span class="chip orange">🇺🇸 Memorial Day May 25</span>
+      <span class="chip green">☀️ Spring Peak Season</span>
+      <span class="chip teal">🏠 Shed Delivery Window</span>
+      <span class="chip yellow">🐕 Backyard BBQ Season Starts</span>
+    </div>
+  </div>
+
+  <!-- ========== WEEK 1: MAY 1-3 ========== -->
+  <div class="week-section" id="week1">
+    <div class="week-header">
+      <h2>📅 Week 1</h2>
+      <span class="week-range">May 1–3 — Spring Momentum</span>
+      <span class="week-count" id="wk1-count"></span>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label special">Friday, May 1 — May Is Here 🌱</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="a1-1">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">May Is Here — Is Your Yard Ready?</span>
+          </div>
+          <div class="card-theme">Spring season open — yards getting used again</div>
+          <div class="card-body" id="body-a1-1">May is here and people are finally back outside. Kids in the yard. Dogs running around. Grills warming up. The last thing you want is to step in something you forgot was out there all winter.
+
+Tidy Tails does weekly dog waste removal across St. Louis County — so your yard is actually usable all spring and summer.
+
+🧹 Weekly: $25/visit | 💰 Monthly flat: $70 | 🔥 One-time cleanup: $100
+First visit FREE for new monthly customers. No contracts, ever.
+
+📱 Text Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+— Jamie, Tidy Tails STL 🐾</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('a1-1', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('a1-1', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="a1-2">
+          <div class="card-header">
+            <span class="platform-badge pb-mp">🛒 Marketplace</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Spring Shed Sale — Don't Wait for Summer</span>
+          </div>
+          <div class="card-theme">Spring urgency — delivery slots filling fast</div>
+          <div class="card-body" id="body-a1-2">Spring is the best time to add a shed — delivery slots fill up fast once summer hits and everyone thinks of it at the same time. If you've been thinking about it, May is the move.
+
+WoodMaster sheds at TuffShed quality — built to last, delivered and installed on your lot.
+
+🏠 Starting at $2,495 | Rent-to-own available | No credit needed
+📍 See them in person: 5520 Westwood Dr, Saint Charles, MO
+
+📱 Text or call Darius: 636-354-7406
+🌐 backyardbuildingsstl.com</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('a1-2', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('a1-2', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Sunday, May 3 — Weekend Post</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="a1-3">
+          <div class="card-header">
+            <span class="platform-badge pb-nd">🏘️ Nextdoor</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Serving Your Neighborhood — Tidy Tails STL</span>
+          </div>
+          <div class="card-theme">Local trust + neighborhood awareness</div>
+          <div class="card-body" id="body-a1-3">Hi neighbors! I'm Jamie with Tidy Tails — I do weekly dog waste removal for several families in this area and wanted to introduce myself if you haven't seen me around.
+
+Dog waste is one of those things that piles up fast in spring once the snow is gone. I do quick, reliable weekly cleanups so you're not dealing with it.
+
+Biweekly service starts at $45/month. Happy to answer any questions — just DM me here or text 314-850-7140.
+
+— Jamie, Tidy Tails STL 🐾</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('a1-3', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('a1-3', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== WEEK 2: MAY 4-10 (MOTHER'S DAY) ========== -->
+  <div class="week-section" id="week2">
+    <div class="week-header">
+      <h2>📅 Week 2</h2>
+      <span class="week-range">May 4–10 — Mother's Day Buildup 🌸</span>
+      <span class="week-count" id="wk2-count"></span>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Monday, May 4</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="b2-1">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Mother's Day Is This Sunday — Give Mom a Clean Yard</span>
+          </div>
+          <div class="card-theme">Mother's Day gift angle — unique, practical, thoughtful</div>
+          <div class="card-body" id="body-b2-1">Mother's Day is May 10th. You've still got time to do something she'll actually use.
+
+Flowers die in a week. Brunch lasts 90 minutes. A clean yard every week? That lasts all summer — and she'll thank you every time she lets the dog out without having to watch her step.
+
+Gift a month of Tidy Tails service for the mom in your life (or yourself — no judgment). One-time cleanup or full monthly service.
+
+🐾 Monthly flat: $70 | Weekly: $25/visit | One-time: $100
+📱 Text Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+— Jamie, Tidy Tails STL</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('b2-1', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('b2-1', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="b2-2">
+          <div class="card-header">
+            <span class="platform-badge pb-ig">📸 Instagram</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Mother's Day Idea She Actually Wants</span>
+          </div>
+          <div class="card-theme">Shed as Mother's Day gift — craft room, garden studio, she-shed</div>
+          <div class="card-body" id="body-b2-2">Does mom have a garage full of stuff that's not hers? A backyard with no space to call her own?
+
+This Mother's Day, give her the she-shed she deserves. A WoodMaster studio shed makes the perfect garden room, craft space, or quiet retreat — and it's delivered and installed, so no assembly required.
+
+Starting at $2,495. Rent-to-own available — no credit needed.
+📍 Come see them: 5520 Westwood Dr, Saint Charles
+📱 Text Darius: 636-354-7406
+
+#MothersDayGift #SheShed #STLSheds #BackyardBuildingsSTL</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('b2-2', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('b2-2', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Wednesday, May 6</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="b2-3">
+          <div class="card-header">
+            <span class="platform-badge pb-all">📣 FB Groups</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Last-Minute Mother's Day — We've Got You</span>
+          </div>
+          <div class="card-theme">Last-minute gift urgency + easy CTA</div>
+          <div class="card-body" id="body-b2-3">For the husband who hasn't figured out Mother's Day yet (you've got 4 days) — here's a genuinely useful gift idea.
+
+Tidy Tails does weekly dog waste removal. Mom's yard stays clean all summer without her lifting a finger. She can actually enjoy the backyard. That's a gift.
+
+Text me "MOM" at 314-850-7140 and I'll set up a month of service as a gift. She doesn't even have to deal with the scheduling.
+
+📱 314-850-7140 — Jamie, Tidy Tails STL 🐾</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('b2-3', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('b2-3', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label special">Sunday, May 10 — Mother's Day 🌸</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="b2-4">
+          <div class="card-header">
+            <span class="platform-badge pb-ig">📸 Instagram</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Happy Mother's Day from Tidy Tails 🌸</span>
+          </div>
+          <div class="card-theme">Holiday acknowledgment + soft sell</div>
+          <div class="card-body" id="body-b2-4">Happy Mother's Day to every mom out there — especially the ones who somehow manage the house, the kids, the dog, AND the yard. 🐾
+
+You deserve a yard you can actually enjoy. Tidy Tails takes the least glamorous part off your plate so you can focus on the parts that matter.
+
+If anyone wants to treat the dog mom in their life — we're just a text away.
+📱 314-850-7140
+
+#HappyMothersDay #TidyTailsSTL #STLDogs #CleanYard</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('b2-4', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('b2-4', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="b2-5">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Happy Mother's Day — The She-Shed Dream Is Real</span>
+          </div>
+          <div class="card-theme">Holiday + aspirational shed hook</div>
+          <div class="card-body" id="body-b2-5">Happy Mother's Day from Backyard Buildings STL! 🌸
+
+Whether it's a garden shed, a craft room, or just somewhere to escape — the she-shed dream is more affordable than you think. WoodMaster studios start at $2,495 and we deliver and install everything.
+
+Rent-to-own available — no credit required, quick approval.
+📍 5520 Westwood Dr, Saint Charles, MO
+📱 Text Darius: 636-354-7406</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('b2-5', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('b2-5', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== WEEK 3: MAY 11-17 ========== -->
+  <div class="week-section" id="week3">
+    <div class="week-header">
+      <h2>📅 Week 3</h2>
+      <span class="week-range">May 11–17 — Post-Mother's Day + Memorial Preview</span>
+      <span class="week-count" id="wk3-count"></span>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Tuesday, May 12</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="c3-1">
+          <div class="card-header">
+            <span class="platform-badge pb-gbp">📍 Google Business</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Spring Yard Cleaning — St. Louis Dog Owners</span>
+          </div>
+          <div class="card-theme">GBP post — local SEO + spring season</div>
+          <div class="card-body" id="body-c3-1">Spring is here and yards across St. Louis County are finally drying out — which means it's time to deal with everything that built up over winter. Tidy Tails provides weekly pet waste removal for dog owners in Florissant, Maryland Heights, O'Fallon, St. Peters, and surrounding areas.
+
+We come weekly, clean the entire yard, and text you when we're done. No contracts. First visit free for new monthly customers.
+
+Monthly flat rate: $70 (all dogs included). Text Jamie at (314) 850-7140 to get started this week.</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('c3-1', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('c3-1', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="c3-2">
+          <div class="card-header">
+            <span class="platform-badge pb-mp">🛒 Marketplace</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Need More Storage? We Deliver & Install</span>
+          </div>
+          <div class="card-theme">Post-Mother's Day back to business — utility angle</div>
+          <div class="card-body" id="body-c3-2">Running out of garage space? Lawn equipment in the way? A WoodMaster storage shed solves that — and it holds its value better than any plastic bin from Costco.
+
+We deliver and install directly on your property. Most jobs done in a day.
+
+🏠 Sizes from 8x8 to 12x24 | Starting at $2,495
+💳 Rent-to-own available — no credit needed
+📍 Come see them: 5520 Westwood Dr, Saint Charles
+
+📱 Text Darius: 636-354-7406 | backyardbuildingsstl.com</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('c3-2', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('c3-2', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Friday, May 15</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="c3-3">
+          <div class="card-header">
+            <span class="platform-badge pb-all">📣 FB Groups</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Memorial Day Cookout Prep Starts Now</span>
+          </div>
+          <div class="card-theme">Memorial Day preview — 10 days out teaser</div>
+          <div class="card-body" id="body-c3-3">Memorial Day is 10 days out. If you're hosting — or planning to — your yard needs to be ready before the guests are.
+
+Dog owners know what I'm talking about. One missed scoop becomes a whole situation when there are kids running around barefoot.
+
+Tidy Tails does weekly cleanups across St. Louis County. One-time deep cleans available for the holiday weekend too — $100 gets your whole yard done.
+
+Text Jamie: 314-850-7140 🐾 No contracts, no hassle.</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('c3-3', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('c3-3', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== WEEK 4: MAY 18-24 ========== -->
+  <div class="week-section" id="week4">
+    <div class="week-header">
+      <h2>📅 Week 4</h2>
+      <span class="week-range">May 18–24 — Memorial Day Week Buildup 🇺🇸</span>
+      <span class="week-count" id="wk4-count"></span>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Monday, May 18</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="shed" data-id="d4-1">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Memorial Day Weekend Project — Add a Shed</span>
+          </div>
+          <div class="card-theme">Memorial Day = backyard upgrade season</div>
+          <div class="card-body" id="body-d4-1">Memorial Day weekend is the unofficial start of backyard season. Cookouts, kids outside, lawn games — and nowhere to put all the stuff that goes with it.
+
+A WoodMaster shed gives you the storage (and the space) to actually enjoy your backyard all summer. We deliver and install before the holiday weekend if you order this week.
+
+🏠 Starting at $2,495 | Rent-to-own available
+📍 5520 Westwood Dr, Saint Charles, MO
+📱 Text Darius: 636-354-7406
+
+Don't spend the summer tripping over the lawnmower. Let's fix that.</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('d4-1', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('d4-1', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="dog" data-id="d4-2">
+          <div class="card-header">
+            <span class="platform-badge pb-nd">🏘️ Nextdoor</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Memorial Day Cleanup — Book This Week</span>
+          </div>
+          <div class="card-theme">Urgency — holiday weekend one-time cleanups</div>
+          <div class="card-body" id="body-d4-2">Hey neighbors — Memorial Day weekend is almost here. If you're hosting and need a quick yard cleanup before guests arrive, Tidy Tails does one-time deep cleans for $100.
+
+I'm booking for this week and the holiday weekend now. Spots are limited since it's a busy time.
+
+Text Jamie at 314-850-7140 and I'll get you on the schedule.
+
+🐾 Tidy Tails STL — locally owned, St. Louis County</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('d4-2', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('d4-2', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Thursday, May 21</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="d4-3">
+          <div class="card-header">
+            <span class="platform-badge pb-ig">📸 Instagram</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">4 Days to Memorial Day — Yard Check</span>
+          </div>
+          <div class="card-theme">Countdown urgency — backyard check</div>
+          <div class="card-body" id="body-d4-3">4 days until Memorial Day. 🇺🇸
+
+Quick question: when was the last time you actually walked your whole yard?
+
+If you've got a dog and guests coming over this weekend — now's the time. Tidy Tails can do a one-time holiday cleanup this week.
+
+$100 flat. Whole yard. Done before the weekend.
+📱 Text Jamie: 314-850-7140
+
+#MemorialDayWeekend #STLDogs #CleanYard #TidyTailsSTL</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('d4-3', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('d4-3', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== WEEK 5: MAY 25-31 ========== -->
+  <div class="week-section" id="week5">
+    <div class="week-header">
+      <h2>📅 Week 5</h2>
+      <span class="week-range">May 25–31 — Memorial Day + Summer Launch 🇺🇸☀️</span>
+      <span class="week-count" id="wk5-count"></span>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label special">Monday, May 25 — Memorial Day 🇺🇸</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="e5-1">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Happy Memorial Day — Enjoy Your Backyard Today</span>
+          </div>
+          <div class="card-theme">Holiday post — honor + soft brand moment</div>
+          <div class="card-body" id="body-e5-1">Happy Memorial Day. 🇺🇸 Take a moment to honor the men and women who served.
+
+Then go enjoy that backyard — cookout, family, dogs running around. That's exactly what today is for.
+
+If you want a clean yard to enjoy all summer long, Tidy Tails has you covered every week. No contracts. First visit free.
+
+📱 314-850-7140 — Jamie, Tidy Tails STL 🐾</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('e5-1', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('e5-1', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="e5-2">
+          <div class="card-header">
+            <span class="platform-badge pb-fb">📘 Facebook</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Happy Memorial Day — Summer Is Open for Business</span>
+          </div>
+          <div class="card-theme">Memorial Day + summer launch hook for sheds</div>
+          <div class="card-body" id="body-e5-2">Happy Memorial Day from Backyard Buildings STL! 🇺🇸
+
+Summer officially starts today — and there's never a better time to think about what you want your backyard to look like this season. More space. More organization. A shed that actually fits your life.
+
+WoodMaster sheds — delivered and installed. Starting at $2,495.
+Rent-to-own available with quick approval.
+
+📱 Text Darius: 636-354-7406
+📍 5520 Westwood Dr, Saint Charles, MO</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('e5-2', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('e5-2', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Wednesday, May 27</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="e5-3">
+          <div class="card-header">
+            <span class="platform-badge pb-all">📣 FB Groups</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">Summer Is Here — Lock In Your Weekly Schedule</span>
+          </div>
+          <div class="card-theme">Post-holiday summer signup push</div>
+          <div class="card-body" id="body-e5-3">Memorial Day weekend is done — summer is officially here. 🌞
+
+If you've been thinking about getting on a dog waste removal schedule, now is literally the perfect time. The yard gets more use in summer. The heat makes everything worse if it sits. And you'll be glad you set this up before July hits.
+
+Tidy Tails does weekly service across St. Louis County — starting at $25/week. Monthly flat rate is $70 (unlimited dogs).
+
+Text Jamie at 314-850-7140 to get started this week. First visit is always free. 🐾
+
+— Jamie, Tidy Tails STL</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('e5-3', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('e5-3', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+        <div class="post-card" data-biz="shed" data-id="e5-4">
+          <div class="card-header">
+            <span class="platform-badge pb-mp">🛒 Marketplace</span>
+            <span class="biz-badge bb-shed">🏠 Sheds</span>
+            <span class="card-title">Beat the Summer Rush — Order Your Shed Now</span>
+          </div>
+          <div class="card-theme">Tariff urgency + summer delivery window</div>
+          <div class="card-body" id="body-e5-4">Lumber prices are up 45% from tariffs and climbing. The shed you're thinking about buying in August will cost more than it does right now.
+
+WoodMaster sheds at TuffShed quality — built tough, delivered and installed. We're booking summer slots now and they fill up fast.
+
+🏠 Starting at $2,495 | Sizes from 8x8 to 12x24
+💳 Rent-to-own: no credit check, quick approval
+📍 5520 Westwood Dr, Saint Charles, MO
+
+📱 Text Darius: 636-354-7406 | backyardbuildingsstl.com
+
+Don't wait — today's price is tomorrow's deal.</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('e5-4', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('e5-4', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="day-group">
+      <div class="day-label">Friday, May 29</div>
+      <div class="posts-grid">
+
+        <div class="post-card" data-biz="dog" data-id="e5-5">
+          <div class="card-header">
+            <span class="platform-badge pb-gbp">📍 Google Business</span>
+            <span class="biz-badge bb-dog">🐕 Tidy Tails</span>
+            <span class="card-title">May Recap — Serving St. Louis County All Summer</span>
+          </div>
+          <div class="card-theme">GBP update — month close + summer service announcement</div>
+          <div class="card-body" id="body-e5-5">May has been a great month for Tidy Tails — we added new customers across Florissant, Maryland Heights, and O'Fallon, and we're heading into summer with full schedules.
+
+If you're looking for reliable weekly dog waste removal in St. Louis County, we're taking new customers now. We service all of St. Louis County and St. Charles County — Monday through Saturday.
+
+Monthly flat rate: $70 (all dogs). First visit always free. No contracts.
+
+Call or text Jamie at (314) 850-7140 — we'd love to add your yard to our route.</div>
+          <div class="card-actions">
+            <button class="btn btn-expand" onclick="toggleExpand('e5-5', this)">▼ Expand</button>
+            <button class="btn btn-copy" onclick="copyPost('e5-5', this)">📋 Copy</button>
+            <button class="btn btn-done" onclick="toggleDone(this.closest('.post-card'))">✓ Mark Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'may-calendar-done-v1';
+let doneSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+let currentFilter = 'all';
+
+document.addEventListener('DOMContentLoaded', () => {
+  doneSet.forEach(id => {
+    const card = document.querySelector(`.post-card[data-id="${id}"]`);
+    if (card) {
+      card.classList.add('done');
+      const btn = card.querySelector('.btn-done');
+      if (btn) btn.textContent = '↩ Undo';
+    }
+  });
+  updateStats();
+});
+
+function copyPost(id, btn) {
+  const body = document.getElementById(`body-${id}`);
+  const text = body ? body.innerText : '';
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function toggleExpand(id, btn) {
+  const body = document.getElementById(`body-${id}`);
+  if (!body) return;
+  const expanded = body.classList.toggle('expanded');
+  btn.textContent = expanded ? '▲ Collapse' : '▼ Expand';
+}
+
+function toggleDone(card) {
+  const id = card.dataset.id;
+  const isDone = card.classList.toggle('done');
+  const btn = card.querySelector('.btn-done');
+  if (isDone) { doneSet.add(id); if (btn) btn.textContent = '↩ Undo'; }
+  else { doneSet.delete(id); if (btn) btn.textContent = '✓ Mark Done'; }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
+  updateStats();
+  applyFilter(currentFilter);
+}
+
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter(type);
+}
+
+function applyFilter(type) {
+  document.querySelectorAll('.post-card').forEach(card => {
+    const biz = card.dataset.biz;
+    const done = card.classList.contains('done');
+    let show = true;
+    if (type === 'dog') show = biz === 'dog';
+    else if (type === 'shed') show = biz === 'shed';
+    else if (type === 'done') show = done;
+    else if (type === 'todo') show = !done;
+    card.classList.toggle('hidden', !show);
+  });
+}
+
+function updateStats() {
+  const all = document.querySelectorAll('.post-card');
+  const done = document.querySelectorAll('.post-card.done');
+  const dog = document.querySelectorAll('.post-card[data-biz="dog"]');
+  const shed = document.querySelectorAll('.post-card[data-biz="shed"]');
+  const total = all.length;
+  const doneCount = done.length;
+
+  document.getElementById('stat-done').textContent = doneCount;
+  document.getElementById('stat-todo').textContent = total - doneCount;
+  document.getElementById('stat-dog').textContent = dog.length;
+  document.getElementById('stat-shed').textContent = shed.length;
+
+  const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  ['wk1','wk2','wk3','wk4','wk5'].forEach((wk, i) => {
+    const section = document.getElementById(`week${i+1}`);
+    const el = document.getElementById(`${wk}-count`);
+    if (section && el) {
+      const cards = section.querySelectorAll('.post-card');
+      const donew = section.querySelectorAll('.post-card.done');
+      el.textContent = `${donew.length}/${cards.length} posted`;
+    }
+  });
+}
+</script>
+</body>
+</html>
